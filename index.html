@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,14 +31,72 @@
                 </svg>
                 <span>WERK</span>
             </div>
-            <!-- <div>
-                <p>HOME</p>
-                <p>JOBS</p>
-                <p>FAVORITES</p>
-            </div> -->
-            <div></div>
+            <div class="flexsmall">
+                <p class="fs bold inter">HOME</p>
+                <p class="fs bold inter">JOBS</p>
+                <p class="fs bold inter">FAVORITES</p>
+            </div>
+            <div class="flexsmall" onclick="openProfileMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="pointer" width="14" height="8" viewBox="0 0 14 8" fill="none">
+                    <path d="M7.00002 8L0.0718162 -1.21137e-06L13.9282 0L7.00002 8Z" fill="#D9D9D9"/>
+                </svg>
+                <div class="flexlittle">
+                    <img src="images/profile.svg" alt="profile" class="profile-image">
+                </div>
+                <section class="fs">
+                    <p class="profile-name">John Oils</p>
+                    <p class="fxs">Wallet: $<span class="wallet-balance">7500</span></p>
+                </section>
+            </div>
         </nav>
-        <main></main>
+        <main>
+            <div class="home hide-element">
+                <section>
+                    <div>
+                        <h1>WELCOME, <span class="profile-firstname upper"></span></h1>
+                        <p>Let's Find the right work for you!</p>
+                    </div>
+                    <button class="pointer flexlittle bold">
+                        POPULAR JOBS 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="13" viewBox="0 0 19 13" fill="none">
+                            <path d="M9.50002 12.8333L19 3.33334L16.625 0.958336L9.49998 8.08338L2.37499 0.958386L-4.15256e-07 3.33339L9.50002 12.8333Z" fill="white"/>
+                        </svg>
+                    </button>
+                </section>
+                <section class="heroimage">
+                    <div>
+                        <img src="images/heroimage.svg" alt="hero image">
+                    </div>
+                </section>
+            </div>
+            
+            <!-- <div class="jobs"></div> -->
+            <div class="favorites">
+                <h2 class="center header"> FAVORITE JOBS </h2>
+                <section class="favorite-jobs">
+
+                </section>
+            </div>
+            <section class="profile-section hide">
+                <div class="relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="close-profile-icon" onclick="closeProfileMenu()" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <path opacity="0.3" d="M20.3168 2.80602L18.2155 0.704727L10.5107 8.40945L2.80602 0.704727L0.704726 2.80602L8.40945 10.5107L0.704727 18.2155L2.80602 20.3168L10.5107 12.612L18.2155 20.3168L20.3168 18.2155L12.612 10.5107L20.3168 2.80602Z" fill="#4A4A4A"/>
+                    </svg>
+                    <h2>Welcome, <span class="profile-name"></span></h2>
+                    <section class="career-info">
+                        <p class="fxs flexsmall">Expertise <span>Frontend developer</span></p>
+                        <p class="fxs flexsmall">Jobs completed <span>104</span></p>
+                    </section>
+                    <section class="center">
+                        <h3>YOUR RATING</h3>
+                        <img src="images/A-rating.png" alt="rating" class="profile-rating">
+                    </section>
+                    <section>
+                        <h3>CURRENT JOB</h3>
+                    </section>
+                </div>
+            </section>
+        </main>
     </div>
     <script src="app.js"></script>
 </body>
@@ -49,4 +108,4 @@
     <path d="M87 0L89.6803 6.31088L96.5106 6.90983L91.3368 11.4091L92.8779 18.0902L87 14.56L81.1221 18.0902L82.6632 11.4091L77.4894 6.90983L84.3197 6.31088L87 0Z" fill="#FFC93E"/>
     <path d="M112 0L114.68 6.31088L121.511 6.90983L116.337 11.4091L117.878 18.0902L112 14.56L106.122 18.0902L107.663 11.4091L102.489 6.90983L109.32 6.31088L112 0Z" fill="#FFC93E"/>
     </svg>
-     -->
+-->
