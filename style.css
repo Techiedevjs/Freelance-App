@@ -67,6 +67,19 @@
 .semibold{
     font-weight: 600;
 }
+.center{
+    text-align: center;
+}
+.hide{
+    opacity: 0;
+    position: absolute;
+    z-index: -100;
+    pointer-events: none;
+    transform: translateX(10vw);
+}
+.hide-element{
+    display: none !important;
+}
 *{
     padding: 0;
     margin: 0;
@@ -116,6 +129,7 @@ body{
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 .homepage header{
     padding: var(--padmedium);
@@ -161,50 +175,64 @@ body{
 .homepage nav div:nth-child(3) section p:last-child{
     color: rgba(255, 255, 255, 0.65);
 }
+.homepage nav div:nth-child(3) .flexlittle{
+    /* width: 2vw;
+    aspect-ratio: 1/1; */
+    /* border-radius: 9999px; */
+}
+.homepage nav .profile-name{
+    font-size: calc(1.1 * var(--fontxsmall));
+}
 .homepage main{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     flex: 1;
     position: relative;
 }
-.homepage main .heroimage{
+.homepage main .home{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.homepage main .home .heroimage{
     position: relative;
 }
-.homepage main .heroimage img{
+.homepage main .home .heroimage img{
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.homepage main section:first-child{
+.homepage main .home section:first-child{
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: calc(2 * var(--gaplarge));
     padding: calc(2 * var(--padlarger));
 }
-.homepage main button{
+.homepage main .home button{
     border-radius: calc(2 * var(--radius));
     background: #7C3EFF;
-    padding: var(--padmedium);
+    padding: var(--padmedium) var(--padlarge);
     color: white;
     width: max-content;
     border: none;
+    letter-spacing: 1.9px;
     font-size: var(--fontmedium);
 }
-.homepage main button svg{
+.homepage main .home button svg{
     height: var(--padmedium);
 }
-.homepage main button:hover{
+.homepage main .home button:hover{
     background: #A276FF;
 }
-.homepage main h1{
+.homepage main .home h1{
     color: #3CA5E9;
     font-size: 2.5vw;
     font-weight: 700;
     letter-spacing: 4.94px;
 }
-.homepage main p{
+.homepage main .home section:first-child p{
     color: #716E6A;
     text-overflow: ellipsis;
     font-family: Outfit;
@@ -216,6 +244,79 @@ body{
     background-color: white;
     position: absolute;
     height: 100%;
+    top: 0;
     right: 0;
     width: 21vw;
+    /* box-shadow: ; */
+}
+.homepage main .profile-section .relative{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 1.7vw;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+.close-profile-icon{
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 1.25vw;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+.profile-section h2{
+    font-weight: 400;
+    color: #716E6A;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 1.5vw;
+    letter-spacing: 0.75px;
+}
+.profile-section h3{
+    color: #716E6A;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: var(--fontmedium);
+    font-weight: 600;
+    line-height: 104.5%; /* 20.9px */
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+.homepage main .profile-section .relative .career-info{
+    border-radius: var(--radius);
+    background: rgba(180, 144, 255, 0.25);
+    padding: var(--padlarge);
+    color: #7038E5;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-weight: 700;
+    letter-spacing: 0.48px;
+    display: flex;
+    flex-direction: column;
+    gap:calc(0.5 * var(--gap));
+}
+.homepage main .profile-section .relative .career-info span{
+    color: #3D235B;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-weight: 600;
+    line-height: 105%; 
+    letter-spacing: 0.8px;
+}
+.profile-rating{
+    width: 5.5vw;
+    aspect-ratio: 1/1;
+}
+.header{
+    color: #3CA5E9;
+    text-align: center;
+    font-size: 1.8vw;
+    font-weight: 700;
+    letter-spacing: 3.42px;
+}
+.favorites{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: var(--padlarge);
 }
