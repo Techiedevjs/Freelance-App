@@ -32,9 +32,9 @@
                 <span>WERK</span>
             </div>
             <div class="flexsmall">
-                <p class="fs bold inter">HOME</p>
-                <p class="fs bold inter">JOBS</p>
-                <p class="fs bold inter">FAVORITES</p>
+                <p class="fs bold inter home-tab">HOME</p>
+                <p class="fs bold inter jobs-tab">JOBS</p>
+                <p class="fs bold inter favorites-tab">FAVORITES</p>
             </div>
             <div class="flexsmall" onclick="openProfileMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="pointer" width="14" height="8" viewBox="0 0 14 8" fill="none">
@@ -50,7 +50,7 @@
             </div>
         </nav>
         <main>
-            <div class="home hide-element">
+            <div class="home">
                 <section>
                     <div>
                         <h1>WELCOME, <span class="profile-firstname upper"></span></h1>
@@ -70,11 +70,40 @@
                 </section>
             </div>
             
-            <!-- <div class="jobs"></div> -->
-            <div class="favorites">
+            <div class="jobs hide-element">
+                <div class="search-jobs">
+                    <p class="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="32" viewBox="0 0 35 32" fill="none">
+                            <path d="M16.6528 6.21784C11.6883 6.21784 7.6499 10.0323 7.6499 14.7215C7.6499 19.4107 11.6883 23.2252 16.6528 23.2252C18.1704 23.2252 19.6623 22.885 20.9227 22.229C21.0237 22.3438 21.1356 22.4495 21.2571 22.5449L23.8293 24.9745C24.0669 25.2269 24.3565 25.4308 24.6805 25.5737C25.0044 25.7166 25.3559 25.7954 25.7133 25.8054C26.0707 25.8153 26.4265 25.7561 26.7588 25.6315C27.0911 25.5069 27.3929 25.3194 27.6457 25.0806C27.8986 24.8418 28.097 24.5567 28.229 24.2428C28.3609 23.9289 28.4236 23.5929 28.4131 23.2553C28.4025 22.9177 28.3191 22.5858 28.1678 22.2798C28.0165 21.9737 27.8006 21.7002 27.5334 21.4758L24.9611 19.0462C24.8358 18.9278 24.6979 18.822 24.5496 18.7304C25.2441 17.5399 25.6814 16.155 25.6814 14.6972C25.6814 10.008 21.6429 6.19354 16.6785 6.19354L16.6528 6.21784ZM16.6528 8.64746C20.2282 8.64746 23.0834 11.3443 23.0834 14.7215C23.0834 16.325 22.4661 17.8071 21.3857 18.9004C21.36 18.9247 21.3343 18.949 21.3085 18.9733C21.187 19.0687 21.0751 19.1744 20.9741 19.2892C19.8424 20.261 18.299 20.8198 16.6271 20.8198C13.0516 20.8198 10.1964 18.123 10.1964 14.7458C10.1964 11.3686 13.0516 8.67175 16.6271 8.67175L16.6528 8.64746Z" fill="white"/>
+                        </svg>
+                    </p>
+                    <input type="text" placeholder="Search Jobs...">
+                </div>
+                <h2 class="center header"> JOBS </h2>
+                <section>
+                    <div class="jobfilter">
+                        
+                    </div>
+                    <div class="alljobs"></div>
+                </section>
+            </div>
+            <div class="favorites hide-element">
                 <h2 class="center header"> FAVORITE JOBS </h2>
                 <section class="favorite-jobs">
-
+                    <article class="job">
+                        <div class="job-details">
+                            <img src="images/job1.png" alt="">
+                            <section>
+                                <h4>Labdrill - frontend developer</h4>
+                                <p>Assist in developing user-facing feautures using HTML, CSS and JavaScript </p>
+                                <div class="difficulty">
+                                    Difficulty
+                                    <div class="stars"></div>
+                                </div>
+                            </section>
+                        </div>
+                        <p class="pay">$725</p>
+                    </article>
                 </section>
             </div>
             <section class="profile-section hide">
