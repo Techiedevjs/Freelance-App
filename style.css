@@ -163,6 +163,11 @@ body{
     border-radius: 21px;
     color: #7C3EFF;
 }
+.homepage nav .pressed{
+    border-radius: var(--radius);
+    background: #A276FF;
+    color: white;
+}
 .homepage nav div:nth-child(3){
     padding: calc(0.5 * var(--padlittle)) var(--padmedium);
     font-weight: 500;
@@ -186,6 +191,7 @@ body{
 .homepage main{
     flex: 1;
     position: relative;
+    background: #EFF2F6;
 }
 .homepage main .home{
     display: grid;
@@ -247,7 +253,7 @@ body{
     top: 0;
     right: 0;
     width: 21vw;
-    /* box-shadow: ; */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .homepage main .profile-section .relative{
     position: relative;
@@ -304,7 +310,7 @@ body{
     letter-spacing: 0.8px;
 }
 .profile-rating{
-    width: 5.5vw;
+    width: 6vw;
     aspect-ratio: 1/1;
 }
 .header{
@@ -313,10 +319,126 @@ body{
     font-size: 1.8vw;
     font-weight: 700;
     letter-spacing: 3.42px;
+    margin-bottom: 0.5rem;
 }
 .favorites{
-    width: 100%;
+    margin: auto;
+    width: 83%;
     height: 100%;
     position: relative;
     padding: var(--padlarge);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.favorite-jobs{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    height: 53vh;
+    overflow-y: scroll;
+    padding-right: 1vw;
+}
+.job{
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gaplarge);
+    padding: 1.3vw;
+    border-radius: var(--radius);
+    background: #FFF;
+}
+.job img{
+    min-width: 7vw;
+    width: 5vw;
+    aspect-ratio: 1/1;
+}
+.job-details{
+    display: flex;
+    gap: var(--gaplarge);
+    flex: 3;
+}
+.job-details section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.job-details section h4{
+    color: #3C3A36;
+    text-overflow: ellipsis;
+    font-size: var(--fontmedium);
+    font-weight: 700;
+    line-height: 104.5%;
+    letter-spacing: 0.5px;
+}
+.job-details h4{
+    text-transform: uppercase;
+}
+.job-details p{
+    color: #575756;
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    line-height: 114%;
+    letter-spacing: 0.4px;
+    text-transform: capitalize;
+}
+.job-details .difficulty{
+    color: #3C3A36;
+    font-size: var(--fontsmall);
+    font-weight: 700;
+    line-height: 114%;
+    letter-spacing: 0.32px;
+}
+.job .pay{
+    color: #575756;
+    text-overflow: ellipsis;
+    font-size: var(--fontmedium);
+    font-weight: 700;
+    line-height: 104.5%;
+    letter-spacing: 0.6px;
+    flex: 1;
+    text-align: right;
+}
+/* JOBS */
+.jobs{
+    height: 100%;
+    position: relative;
+    padding: var(--padlarge);
+    width: 83%;
+    margin: auto;
+}
+.search-icon{
+    background: rgba(162, 118, 255, 0.50);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--fontxl);
+    aspect-ratio: 1/1;
+}
+.search-icon svg{
+    width: var(--fontlarge);
+    height: var(--fontlarge);
+}
+.search-jobs{
+    display: flex;
+    background-color: white;
+    width: 20vw;
+    gap: var(--gap);
+    border-radius: var(--radius);
+    position: absolute;
+    top: var(--padlarge);
+    overflow: hidden;
+}
+.search-jobs input{
+    border: none;
+    outline: none;
+    padding: var(--padlittle) 0;
+}
+.search-jobs input::placeholder{
+    color: #716E6A;
+    text-overflow: ellipsis;
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    line-height: 114%;
+    letter-spacing: 0.4px;
 }
