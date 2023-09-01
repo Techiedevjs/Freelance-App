@@ -121,7 +121,7 @@ body{
     font-size: calc( 0.7 * var(--fontsmall));
 }
 /* HOME PAGE */
-.homepage{
+.container{
     width: 70vw;
     height: 80vh;
     background-color: white;
@@ -131,17 +131,17 @@ body{
     flex-direction: column;
     overflow: hidden;
 }
-.homepage header{
+.container header{
     padding: var(--padmedium);
     text-align: center;
     position: relative;
 }
-.homepage header svg{
+.container header svg{
     height: var(--fontsmall);
     position: absolute;
     left: var(--padmedium);
 }
-.homepage nav{
+.container nav{
     background: #7C3EFF;
     color: white;
     font-size: var(--fontxl);
@@ -149,74 +149,78 @@ body{
     display: flex;
     justify-content: space-between;
 }
-.homepage nav div:first-child{
+.container nav div:first-child{
     font-weight: 900;
     letter-spacing: 1.4px;
 }
-.homepage nav div:nth-child(2) p{
+.container nav div:nth-child(2) p{
     padding: calc(0.5 * var(--padlittle)) var(--padmedium);
     cursor: pointer;
     letter-spacing: 0.8px;
 }
-.homepage nav div:nth-child(2) p:hover{
+.container nav div:nth-child(2) p:hover{
     background-color: #DCCBFF;
     border-radius: 21px;
     color: #7C3EFF;
 }
-.homepage nav .pressed{
+.container nav .pressed{
     border-radius: var(--radius);
     background: #A276FF;
     color: white;
 }
-.homepage nav div:nth-child(3){
+.container nav div:nth-child(3){
     padding: calc(0.5 * var(--padlittle)) var(--padmedium);
     font-weight: 500;
     border-radius: calc(0.8 * var(--radius));
 }
-.homepage nav div:nth-child(3):hover{
+.container nav div:nth-child(3):hover{
     background: #A276FF;
     cursor: pointer;
 }
-.homepage nav div:nth-child(3) section p:last-child{
+.container nav div:nth-child(3) section p:last-child{
     color: rgba(255, 255, 255, 0.65);
 }
-.homepage nav div:nth-child(3) .flexlittle{
+.container nav div:nth-child(3) .flexlittle{
     /* width: 2vw;
     aspect-ratio: 1/1; */
     /* border-radius: 9999px; */
 }
-.homepage nav .profile-name{
+.container nav .profile-name{
     font-size: calc(1.1 * var(--fontxsmall));
 }
-.homepage main{
+.container main{
     flex: 1;
     position: relative;
     background: #EFF2F6;
 }
-.homepage main .home{
+.home{
+    width: 100%;
+    height: 100%;
+}
+.homepage{
     display: grid;
     grid-template-columns: 1fr 1fr;
     position: relative;
     width: 100%;
     height: 100%;
 }
-.homepage main .home .heroimage{
+.homepage .heroimage{
     position: relative;
 }
-.homepage main .home .heroimage img{
+.homepage .heroimage img{
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.homepage main .home section:first-child{
+.homepage section:first-child{
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: calc(2 * var(--gaplarge));
     padding: calc(2 * var(--padlarger));
 }
-.homepage main .home button{
+.homepage button{
     border-radius: calc(2 * var(--radius));
     background: #7C3EFF;
     padding: var(--padmedium) var(--padlarge);
@@ -226,19 +230,19 @@ body{
     letter-spacing: 1.9px;
     font-size: var(--fontmedium);
 }
-.homepage main .home button svg{
+.homepage button svg{
     height: var(--padmedium);
 }
-.homepage main .home button:hover{
+.homepage button:hover{
     background: #A276FF;
 }
-.homepage main .home h1{
+.homepage h1{
     color: #3CA5E9;
     font-size: 2.5vw;
     font-weight: 700;
     letter-spacing: 4.94px;
 }
-.homepage main .home section:first-child p{
+.homepage section:first-child p{
     color: #716E6A;
     text-overflow: ellipsis;
     font-family: Outfit;
@@ -246,7 +250,7 @@ body{
     font-weight: 400;
     letter-spacing: 0.9px;
 }
-.homepage main .profile-section{
+.container main .profile-section{
     background-color: white;
     position: absolute;
     height: 100%;
@@ -255,7 +259,7 @@ body{
     width: 21vw;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-.homepage main .profile-section .relative{
+.container main .profile-section .relative{
     position: relative;
     height: 100%;
     width: 100%;
@@ -290,7 +294,7 @@ body{
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
 }
-.homepage main .profile-section .relative .career-info{
+.container main .profile-section .relative .career-info{
     border-radius: var(--radius);
     background: rgba(180, 144, 255, 0.25);
     padding: var(--padlarge);
@@ -302,7 +306,7 @@ body{
     flex-direction: column;
     gap:calc(0.5 * var(--gap));
 }
-.homepage main .profile-section .relative .career-info span{
+.container main .profile-section .relative .career-info span{
     color: #3D235B;
     text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
     font-weight: 600;
@@ -321,7 +325,7 @@ body{
     letter-spacing: 3.42px;
     margin-bottom: 0.5rem;
 }
-.favorites{
+.favorites, .popular{
     margin: auto;
     width: 83%;
     height: 100%;
@@ -331,11 +335,11 @@ body{
     flex-direction: column;
     justify-content: space-around;
 }
-.favorite-jobs{
+.favorite-jobs, .popular-jobs{
     display: flex;
     flex-direction: column;
     gap: var(--gap);
-    height: 53vh;
+    height: 60vh;
     overflow-y: scroll;
     padding-right: 1vw;
 }
@@ -349,18 +353,19 @@ body{
 }
 .job img{
     min-width: 7vw;
-    width: 5vw;
     aspect-ratio: 1/1;
 }
 .job-details{
     display: flex;
     gap: var(--gaplarge);
-    flex: 3;
+    flex: 4;
+    align-items: center;
 }
 .job-details section{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    gap: calc(0.5 * var(--gap));
 }
 .job-details section h4{
     color: #3C3A36;
@@ -388,7 +393,7 @@ body{
     line-height: 114%;
     letter-spacing: 0.32px;
 }
-.job .pay{
+.job .last{
     color: #575756;
     text-overflow: ellipsis;
     font-size: var(--fontmedium);
@@ -397,6 +402,28 @@ body{
     letter-spacing: 0.6px;
     flex: 1;
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+}
+.last button{
+    width: 7vw;
+    border: none;
+    border-radius: calc(1.5 * var(--radius));
+    background: #A276FF;
+    padding: calc(0.5 * var(--padlittle)) var(--padlittle);
+    font-family: 'Inter';
+    font-size: var(--fontxsmall);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+.job:hover button{
+    display: block;
 }
 /* JOBS */
 .jobs{
@@ -405,6 +432,12 @@ body{
     padding: var(--padlarge);
     width: 83%;
     margin: auto;
+}
+.jobs-container{
+    margin-top: var(--gaplarge);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gaplarge);
 }
 .search-icon{
     background: rgba(162, 118, 255, 0.50);
@@ -441,4 +474,99 @@ body{
     font-weight: 500;
     line-height: 114%;
     letter-spacing: 0.4px;
+}
+.jobs .alljobs{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    overflow-y: scroll;
+    padding-right: 1vw;
+    max-height: 60vh;
+}
+.jobs .jobfilter{
+    width: 25%;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    height: max-content;
+}
+.jobfilter{
+    background-color: white;
+    padding: var(--padlarger);
+}
+.jobfilter h4{
+    color: #3C3A36;
+    text-overflow: ellipsis;
+    font-size: var(--fontmedium);
+    font-weight: 700;
+    line-height: 104.5%;
+    letter-spacing: 0.5px;
+}
+.jobfilter h5{
+    color: #434343;
+    text-overflow: ellipsis;
+    font-size: var(--fontxsmall);
+    font-weight: 700;
+    line-height: 104.5%;
+    letter-spacing: 0.35px;
+    margin-bottom: var(--padlittle);
+}
+.jobfilter .budget{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.budget input{
+    width: 43%;
+    border-radius: var(--radius);
+    border: 1px solid #808080;
+    background: #FFF;
+    padding: calc(0.5 * var(--padlittle)) var(--padlittle);
+    color: #575756;
+    font-size: var(--fontxsmall);
+    outline: none;
+}
+.budget span{
+    width: var(--fontxsmall);
+    height: 2px;
+    background: #808080;
+}
+.types, .skills{
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.5 * var(--gap));
+}
+.jobfilter .checkboxes{
+    width: max-content;
+    color: #575756;;
+}
+.jobfilter .checkbox{
+    display: flex;
+    height: var(--fontmedium);
+    aspect-ratio: 1/1;
+    background: white;
+    border: rgba(0, 0, 0, 0.455) 2px solid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+}
+.jobfilter button{
+    width: 100%;
+    border-radius: calc(1.8 * var(--radius));
+    background: #A276FF;
+    color: white;
+    border: none;
+    padding: var(--padmedium);
+    font-family: 'Inter';
+    font-size: var(--fontsmall);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+@media screen and (max-width: 1500px) {
+    .container{
+        width: 80vw;
+        height: 90vh;
+    }
 }
