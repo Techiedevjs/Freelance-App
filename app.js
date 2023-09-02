@@ -1,13 +1,14 @@
 const profile = {
     firstName: "Elon",
     lastName: "Musk",
-    walletBalance: 3500
+    walletBalance: 3500,
+    rating: "C"
 }
 document.querySelectorAll('.profile-name').forEach(elem => {
     elem.innerHTML = profile.firstName + " " + profile.lastName;
 })
 document.querySelector('.profile-firstname').innerHTML = profile.firstName;
-
+document.querySelector('.profile-rating').src = `images/${profile.rating}-rating.png`
 const openProfileMenu = () => {
     document.querySelector('.profile-section').classList.remove('hide')
 }
@@ -73,7 +74,8 @@ let jobs = [
         imageUrl: "images/job3.png",
         pay: 650,
         favorite: false,
-        popular: true
+        popular: true,
+        current:true
     },
     {
         jobid: 3,
@@ -99,12 +101,13 @@ let jobs = [
     {
         jobid: 5,
         company: "Ragnorxk",
-        position: "digital marketing specialist",
+        position: "Marketer",
         detail: "selling our products in the digital space",
         difficulty: 5,
         imageUrl: "images/job3.png",
         pay: 1650,
-        favorite: false
+        favorite: false,
+        current:true
     },
     {
         jobid: 6,
@@ -117,6 +120,9 @@ let jobs = [
         favorite: false
     },
 ]
+const pushDifficultyRate = (difficulty) => {
+    return Array(difficulty + 1).join('<img src="images/star.svg" alt="star"/>')
+}
 const pushAllJobs = (data) => {
     document.querySelector('.alljobs').innerHTML = "";
     data.map((job) => {
@@ -130,7 +136,9 @@ const pushAllJobs = (data) => {
                     <p>${detail}</p>
                     <div class="difficulty">
                         Difficulty
-                        <div class="stars"></div>
+                        <div class="stars padlittle">
+                            ${pushDifficultyRate(difficulty)}
+                        </div>
                     </div>
                 </section>
             </div>
@@ -157,7 +165,9 @@ const pushFavoriteJobs = (data) => {
                         <p>${detail}</p>
                         <div class="difficulty">
                             Difficulty
-                            <div class="stars"></div>
+                            <div class="stars">
+                                ${pushDifficultyRate(difficulty)}
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -185,7 +195,9 @@ const pushPopularJobs = (data) => {
                         <p>${detail}</p>
                         <div class="difficulty">
                             Difficulty
-                            <div class="stars"></div>
+                            <div class="stars padlittle">
+                                ${pushDifficultyRate(difficulty)}
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -199,3 +211,29 @@ const pushPopularJobs = (data) => {
     })
 }
 pushPopularJobs(jobs);
+const pushCurrentJobs = (data) => {
+    document.querySelector('.current-jobs').innerHTML  = ""
+    data.map((job) => {
+        const {current, company, position, difficulty, imageUrl} = job
+        if(current){
+            document.querySelector('.current-jobs').innerHTML += `
+            <article class="currentjob">
+                <div class="job-details">
+                    <img src="${imageUrl}" alt="">
+                    <section>
+                        <h4>${company} - ${position}</h4>
+                        <div class="difficulty">
+                            Difficulty
+                            <div class="stars padlittle">
+                                ${pushDifficultyRate(difficulty)}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="continuejob"> CONTINUE JOB </div>
+            </article> 
+            `
+        }
+    })
+}
+pushCurrentJobs(jobs)
