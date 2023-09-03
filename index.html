@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Helix-Werk</title>
 </head>
@@ -71,117 +71,131 @@
                     </section>
                 </div>
                 <div class="popular hide-element">
-                    <h2 class="center header"> POPULAR JOBS </h2>
-                    <section class="popular-jobs"></section>
+                    <section class="popular-cont">
+                        <h2 class="center header"> POPULAR JOBS </h2>
+                        <section class="popular-jobs"></section>
+                    </section>
+                    <section class="popular-single hidden single">
+
+                    </section>
                 </div>
             </div>
             
             <div class="jobs hide-element">
-                <div class="search-jobs">
-                    <p class="search-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="32" viewBox="0 0 35 32" fill="none">
-                            <path d="M16.6528 6.21784C11.6883 6.21784 7.6499 10.0323 7.6499 14.7215C7.6499 19.4107 11.6883 23.2252 16.6528 23.2252C18.1704 23.2252 19.6623 22.885 20.9227 22.229C21.0237 22.3438 21.1356 22.4495 21.2571 22.5449L23.8293 24.9745C24.0669 25.2269 24.3565 25.4308 24.6805 25.5737C25.0044 25.7166 25.3559 25.7954 25.7133 25.8054C26.0707 25.8153 26.4265 25.7561 26.7588 25.6315C27.0911 25.5069 27.3929 25.3194 27.6457 25.0806C27.8986 24.8418 28.097 24.5567 28.229 24.2428C28.3609 23.9289 28.4236 23.5929 28.4131 23.2553C28.4025 22.9177 28.3191 22.5858 28.1678 22.2798C28.0165 21.9737 27.8006 21.7002 27.5334 21.4758L24.9611 19.0462C24.8358 18.9278 24.6979 18.822 24.5496 18.7304C25.2441 17.5399 25.6814 16.155 25.6814 14.6972C25.6814 10.008 21.6429 6.19354 16.6785 6.19354L16.6528 6.21784ZM16.6528 8.64746C20.2282 8.64746 23.0834 11.3443 23.0834 14.7215C23.0834 16.325 22.4661 17.8071 21.3857 18.9004C21.36 18.9247 21.3343 18.949 21.3085 18.9733C21.187 19.0687 21.0751 19.1744 20.9741 19.2892C19.8424 20.261 18.299 20.8198 16.6271 20.8198C13.0516 20.8198 10.1964 18.123 10.1964 14.7458C10.1964 11.3686 13.0516 8.67175 16.6271 8.67175L16.6528 8.64746Z" fill="white"/>
-                        </svg>
-                    </p>
-                    <input type="text" placeholder="Search Jobs...">
-                </div>
-                <h2 class="center header"> JOBS </h2>
-                <section class="jobs-container">
-                    <div class="jobfilter">
-                        <h4>JOB FILTER</h4>
-                        <div>
-                            <h5>BUDGET</h5>
-                            <div class="budget">
-                                <input type="text" name="min" id="min" placeholder="min...">
-                                <span></span>
-                                <input type="text" name="max" id="max" placeholder="max...">
-                            </div>
-                        </div>
-                        <div>
-                            <h5>TYPE</h5>
-                            <div class="types">
-                                <div class="flexlittle fxs pointer checkboxes" id="" >
-                                    <span class="checkbox">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                    </svg>
-                                    </span>
-                                    <p>Local Jobs</p>
-                                </div>
-                                <div class="flexlittle fxs pointer checkboxes" id="" >
-                                    <span class="checkbox">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                    </svg>
-                                    </span>
-                                    <p>Featured Jobs</p>
-                                </div>
-                                <div class="flexlittle fxs pointer checkboxes" id="" >
-                                    <span class="checkbox">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                    </svg>
-                                    </span>
-                                    <p>Recruiter Jobs</p>
-                                </div>
-                                <div class="flexlittle fxs pointer checkboxes" id="" >
-                                    <span class="checkbox">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                    </svg>
-                                    </span>
-                                    <p>Full Time Jobs</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h5>SKILLS</h5>
-                            <div class="skills">
-                                <div class="flexlittle fxs pointer checkboxes" id="" >
-                                    <span class="checkbox">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                    </svg>
-                                    </span>
-                                    <p>Local Jobs</p>
-                                </div>
-                                <div class="flexlittle fxs pointer checkboxes" id="" >
-                                    <span class="checkbox">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                    </svg>
-                                    </span>
-                                    <p>Featured Jobs</p>
-                                </div>
-                                <div class="flexlittle fxs pointer checkboxes" id="" >
-                                    <span class="checkbox">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                    </svg>
-                                    </span>
-                                    <p>Recruiter Jobs</p>
-                                </div>
-                                <div class="flexlittle fxs pointer checkboxes" id="" >
-                                    <span class="checkbox">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                    </svg>
-                                    </span>
-                                    <p>Full Time Jobs</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button>RESET FILTER</button>
+                <section class="jobs-cont">
+                    <div class="search-jobs">
+                        <p class="search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="32" viewBox="0 0 35 32" fill="none">
+                                <path d="M16.6528 6.21784C11.6883 6.21784 7.6499 10.0323 7.6499 14.7215C7.6499 19.4107 11.6883 23.2252 16.6528 23.2252C18.1704 23.2252 19.6623 22.885 20.9227 22.229C21.0237 22.3438 21.1356 22.4495 21.2571 22.5449L23.8293 24.9745C24.0669 25.2269 24.3565 25.4308 24.6805 25.5737C25.0044 25.7166 25.3559 25.7954 25.7133 25.8054C26.0707 25.8153 26.4265 25.7561 26.7588 25.6315C27.0911 25.5069 27.3929 25.3194 27.6457 25.0806C27.8986 24.8418 28.097 24.5567 28.229 24.2428C28.3609 23.9289 28.4236 23.5929 28.4131 23.2553C28.4025 22.9177 28.3191 22.5858 28.1678 22.2798C28.0165 21.9737 27.8006 21.7002 27.5334 21.4758L24.9611 19.0462C24.8358 18.9278 24.6979 18.822 24.5496 18.7304C25.2441 17.5399 25.6814 16.155 25.6814 14.6972C25.6814 10.008 21.6429 6.19354 16.6785 6.19354L16.6528 6.21784ZM16.6528 8.64746C20.2282 8.64746 23.0834 11.3443 23.0834 14.7215C23.0834 16.325 22.4661 17.8071 21.3857 18.9004C21.36 18.9247 21.3343 18.949 21.3085 18.9733C21.187 19.0687 21.0751 19.1744 20.9741 19.2892C19.8424 20.261 18.299 20.8198 16.6271 20.8198C13.0516 20.8198 10.1964 18.123 10.1964 14.7458C10.1964 11.3686 13.0516 8.67175 16.6271 8.67175L16.6528 8.64746Z" fill="white"/>
+                            </svg>
+                        </p>
+                        <input type="text" placeholder="Search Jobs..." id="searchjobs">
                     </div>
-                    <div class="alljobs">
+                    <h2 class="center header"> JOBS </h2>
+                    <section class="jobs-container">
+                        <div class="jobfilter">
+                            <h4>JOB FILTER</h4>
+                            <div>
+                                <h5>BUDGET</h5>
+                                <div class="budget">
+                                    <input type="number" name="min" id="min" placeholder="min..." oninput="searchBasedOnBudgets()">
+                                    <span></span>
+                                    <input type="number" name="max" id="max" placeholder="max..." oninput="searchBasedOnBudgets()">
+                                </div>
+                            </div>
+                            <div>
+                                <h5>TYPE</h5>
+                                <div class="types">
+                                    <div class="flexlittle fxs pointer checkboxes" id="" >
+                                        <span class="checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
+                                        </svg>
+                                        </span>
+                                        <p>Local Jobs</p>
+                                    </div>
+                                    <div class="flexlittle fxs pointer checkboxes" id="" >
+                                        <span class="checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
+                                        </svg>
+                                        </span>
+                                        <p>Featured Jobs</p>
+                                    </div>
+                                    <div class="flexlittle fxs pointer checkboxes" id="" >
+                                        <span class="checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
+                                        </svg>
+                                        </span>
+                                        <p>Recruiter Jobs</p>
+                                    </div>
+                                    <div class="flexlittle fxs pointer checkboxes" id="" >
+                                        <span class="checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
+                                        </svg>
+                                        </span>
+                                        <p>Full Time Jobs</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5>SKILLS</h5>
+                                <div class="skills">
+                                    <div class="flexlittle fxs pointer checkboxes" id="" >
+                                        <span class="checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
+                                        </svg>
+                                        </span>
+                                        <p>Local Jobs</p>
+                                    </div>
+                                    <div class="flexlittle fxs pointer checkboxes" id="" >
+                                        <span class="checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
+                                        </svg>
+                                        </span>
+                                        <p>Featured Jobs</p>
+                                    </div>
+                                    <div class="flexlittle fxs pointer checkboxes" id="" >
+                                        <span class="checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
+                                        </svg>
+                                        </span>
+                                        <p>Recruiter Jobs</p>
+                                    </div>
+                                    <div class="flexlittle fxs pointer checkboxes" id="" >
+                                        <span class="checkbox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
+                                        </svg>
+                                        </span>
+                                        <p>Full Time Jobs</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="resetFilter()">RESET FILTER</button>
+                        </div>
+                        <div class="alljobs">
+    
+                        </div>
+                    </section>
+                </section>
+                <section class="jobs-single single hidden">
 
-                    </div>
                 </section>
             </div>
             <div class="favorites hide-element">
-                <h2 class="center header"> FAVORITE JOBS </h2>
-                <section class="favorite-jobs"></section>
+                <div class="favorites-cont ">
+                    <h2 class="center header"> FAVORITE JOBS </h2>
+                    <section class="favorite-jobs"></section>
+                </div>
+                <div class="single hidden favorites-single"></div>
             </div>
+            <!-- PROFILE SECTION -->
             <section class="profile-section hide">
                 <div class="relative">
                     <svg xmlns="http://www.w3.org/2000/svg" class="close-profile-icon" onclick="closeProfileMenu()" width="21" height="21" viewBox="0 0 21 21" fill="none">
@@ -189,8 +203,8 @@
                     </svg>
                     <h2>Welcome, <span class="profile-name"></span></h2>
                     <section class="career-info">
-                        <p class="fxs flexsmall">Expertise <span>Frontend developer</span></p>
-                        <p class="fxs flexsmall">Jobs completed <span>104</span></p>
+                        <p class="fxs flexsmall">Expertise <span id="expertise"></span></p>
+                        <p class="fxs flexsmall">Jobs completed <span class="completed-jobs"></span></p>
                     </section>
                     <section class="center">
                         <h3>YOUR RATING</h3>
@@ -203,6 +217,19 @@
                         </section>
                     </section>
                 </div>
+            </section>
+            <!-- ADDED TO FAVORITES -->
+            <section class="added-to-favorites hide">
+                <article class="flexsmall">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pointer" onclick="cancelAddToFavorites()" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                        <path opacity="0.3" d="M13.8096 2.49588L13.9864 2.3191L13.8096 2.14233L12.4851 0.817843L12.3083 0.641066L12.1316 0.817843L7.4519 5.4975L2.77225 0.817843L2.59547 0.641066L2.41869 0.817843L1.09421 2.14233L0.917433 2.3191L1.09421 2.49588L5.77387 7.17554L1.09421 11.8552L0.917433 12.032L1.09421 12.2087L2.41869 13.5332L2.59547 13.71L2.77225 13.5332L7.4519 8.85357L12.1316 13.5332L12.3083 13.71L12.4851 13.5332L13.8096 12.2087L13.9864 12.032L13.8096 11.8552L9.12994 7.17554L13.8096 2.49588Z" fill="#4A4A4A" stroke="#4A4A4A" stroke-width="0.5"/>
+                    </svg>
+                    <img src="images/job1.png" alt="" class="jobimages">
+                    <div>
+                        <h4>Added To Favorites</h4>
+                        <p class="company-position cap"></p>
+                    </div>
+                </article>
             </section>
         </main>
     </div>
