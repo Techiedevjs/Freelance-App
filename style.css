@@ -13,6 +13,10 @@
     background: #FFFFFF;
     border-radius: 5px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
 :root{
     --fontxsmall: clamp(12px, 0.8vw, 20px);
     --fontsmall: clamp(14px, 0.9vw, 30px);
@@ -26,6 +30,9 @@
     --gap: clamp(0.7rem, 0.8vw, 2rem);
     --gaplarge: clamp(1rem, 1vw, 4rem);
     --radius: clamp(12px, 0.8vw, 30px);
+}
+button{
+    border: none;
 }
 .fxs{
     font-size: var(--fontxsmall);
@@ -325,7 +332,11 @@ body{
     letter-spacing: 3.42px;
     margin-bottom: 0.5rem;
 }
-.favorites, .popular{
+.favorites{
+    width: 100%;
+    height: 100%;
+}
+.favorites-cont, .popular-cont , .singledetails{
     margin: auto;
     width: 83%;
     height: 100%;
@@ -339,17 +350,20 @@ body{
     display: flex;
     flex-direction: column;
     gap: var(--gap);
-    height: 60vh;
+    height: 65vh;
     overflow-y: scroll;
     padding-right: 1vw;
 }
-.job{
+.job, .selectedjob{
     display: flex;
     justify-content: space-between;
     gap: var(--gaplarge);
     padding: 1.3vw;
     border-radius: var(--radius);
     background: #FFF;
+}
+.job:hover{
+    border: 2px solid rgba(127, 50, 218, 0.50);
 }
 .job .job-details img:first{
     min-width: 7vw;
@@ -426,7 +440,7 @@ body{
     border: none;
     border-radius: calc(1.5 * var(--radius));
     background: #A276FF;
-    padding: calc(0.5 * var(--padlittle)) var(--padlittle);
+    padding: var(--padlittle);
     font-family: 'Inter';
     font-size: var(--fontxsmall);
     font-weight: 700;
@@ -435,11 +449,14 @@ body{
     cursor: pointer;
     display: none;
 }
+.last button:hover{
+    background: #7C3EFF;
+}
 .job:hover button{
     display: block;
 }
 /* JOBS */
-.jobs{
+.jobs-cont{
     height: 100%;
     position: relative;
     padding: var(--padlarge);
@@ -488,7 +505,7 @@ body{
     line-height: 114%;
     letter-spacing: 0.4px;
 }
-.jobs .alljobs{
+.jobs-cont .alljobs{
     width: 75%;
     display: flex;
     flex-direction: column;
@@ -497,7 +514,7 @@ body{
     padding-right: 1vw;
     max-height: 60vh;
 }
-.jobs .jobfilter{
+.jobs-cont .jobfilter{
     width: 25%;
     border-radius: var(--radius);
     display: flex;
@@ -576,6 +593,10 @@ body{
     font-size: var(--fontsmall);
     font-weight: 700;
     letter-spacing: 0.8px;
+    cursor: pointer;
+}
+.jobfilter button:hover{
+    background: #7C3EFF;
 }
 .current-jobs{
     display: flex;
@@ -620,6 +641,159 @@ body{
     font-weight: 700;
     display: none;
 }
+.single{
+    position: relative;
+}
+.singledetails{
+    gap: var(--gap);
+    width: 66%;
+}
+.singledetails .job-details img{
+    min-width: 18%;
+    /* width: 17.5vh; */
+}
+.singledetails .job-details section{
+    flex: 1;
+    height: 100%;
+    justify-content: space-between;
+}
+.singledetails .continue-favorite{
+    display: flex;
+    justify-content: space-between;
+}
+.singledetails .continue-favorite button{
+    border-radius:calc(2 *  var(--radius));
+    padding: var(--padlittle) var(--padlarger);
+    background: #A276FF;
+    color: white;
+    font-family: 'Inter';
+    font-size: var(--fontsmall);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+}
+.singledetails .continue-favorite button:hover{
+    background: #7C3EFF;
+}
+.singledetails .continue-favorite .flexlittle{
+    color: #7C3EFF;
+    font-size: var(--fontxsmall);
+    font-weight: 700;
+    letter-spacing: 1.33px;
+    gap: calc(0.1 * var(--gap));
+}
+.singledetails .continue-favorite .flexlittle svg{
+    height: 1.5vw;
+    aspect-ratio: 1/1;
+}
+.back{
+    position: absolute;
+    top: 2vw;
+    left: 2vw;
+    color: #7C3EFF;
+    font-size: var(--fontmedium);
+    font-weight: 700;
+    letter-spacing: 1.9px;
+}
+.back svg{
+    height: var(--fontmedium);
+}
+.back:hover, .continue-favorite .flexlittle:hover{
+    color: #A276FF;
+}
+.back:hover svg path, .continue-favorite .flexlittle:hover svg path{
+    fill: #A276FF;
+}
+.earnings-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: var(--gap);
+}
+.earnings-info div{
+    padding: var(--padmedium);
+    border-radius: var(--radius);
+    background: rgba(180, 144, 255, 0.25);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: calc(0.4 * var(--gap));
+    flex-direction: column;
+    align-items: center;
+}
+.earnings-info div h4, .rating-completion div h5{
+    color: #7038E5;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontsmall);
+    font-weight: 700;
+    letter-spacing: 0.48px;
+}
+.earnings-info div span{
+    color: #3D235B;
+    text-align: center;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontmedium);
+    font-weight: 500;
+    letter-spacing: 0.9px;
+}
+.rating-completion{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+}
+.rating-completion div{
+    padding: var(--padmedium);
+    display: flex;
+    text-align: center;
+    gap: calc(0.5 * var(--gap));
+    flex-direction: column;
+    border-radius: var(--radius);
+    background: #FFF;
+}
+.rating-completion .ratings img{
+    width: 26%;
+    aspect-ratio: 1/1;
+    margin: auto;
+}
+.rating-completion .ratings p{
+    color: #3D235B;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    line-height: 114%; /* 20.52px */
+    letter-spacing: 0.18px;
+}
+.added-to-favorites{
+    position: absolute;
+    top: var(--gap);
+    right: var(--gap);
+    padding: var(--padmedium);
+    border-radius: var(--radius);
+    background: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.added-to-favorites h4{
+    color: #3CA5E9;
+    text-overflow: ellipsis;
+    font-size: var(--fontlarge);
+    font-weight: 500;
+    line-height: 114%;
+    letter-spacing: 0.6px;
+}
+.added-to-favorites p{
+    color: #212121;
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    line-height: 114%; /* 18.24px */
+    letter-spacing: 0.4px;
+}
+.added-to-favorites svg{
+    position: absolute;
+    top: var(--gap);
+    right: var(--gap);
+}
+.added-to-favorites img{
+    width: 23%;
+}
 @media screen and (max-width: 1500px) {
     .container{
         width: 80vw;
@@ -634,5 +808,10 @@ body{
     }
     .currentjob .difficulty .stars{
         gap: calc(0.2 * var(--gap));
+    }
+}
+@media screen and (max-height: 700px){
+    .favorite-jobs, .popular-jobs{
+        height: 60vh;
     }
 }
