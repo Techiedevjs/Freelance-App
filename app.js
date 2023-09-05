@@ -7,7 +7,12 @@ const profile = {
     averageJobEarnings: 725,
     jobsCompleted: 114,
     expertise: "Backend Developer",
-    expertiseCategories: 3
+    expertiseCategories: 3,
+    jobCompletion: {
+        incompleteJobs : 25,
+        onTimeJobs: 79,
+        lateJobs: 26
+    }
 }
 document.querySelectorAll('.profile-name').forEach(elem => {
     elem.innerHTML = profile.firstName + " " + profile.lastName;
@@ -268,72 +273,92 @@ const pushCurrentJobs = (data) => {
 const viewJob = ( jobid, name) => {
     let job = jobs.filter(j => j.jobid === jobid);
     if(job.length){
-        console.log(job)
-        const {company, position, detail, difficulty, imageUrl, pay, jobid} = job[0]
+        const {company, position, detail, difficulty, imageUrl, jobid} = job[0]
+        const {incompleteJobs, lateJobs, onTimeJobs} = profile.jobCompletion
+        let totaljobs = incompleteJobs + lateJobs + onTimeJobs;
+        let incomplete = (incompleteJobs/totaljobs) * 100;
+        let late = (lateJobs/totaljobs) * 100;
+        let ontime = (onTimeJobs/totaljobs) * 100;
         document.querySelector(`.${name}-single`).classList.remove('hidden');
         document.querySelector(`.${name}-cont`).classList.add('hidden');
         document.querySelector(`.${name}-single`).innerHTML = `
         <div class="back flexsmall pointer" onclick="backToPrevious('${name}')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="19" viewBox="0 0 13 19" fill="none">
-                            <path d="M0.166748 9.50002L9.66675 19L12.0417 16.625L4.9167 9.49998L12.0417 2.37499L9.6667 0L0.166748 9.50002Z" fill="#7C3EFF"/>
-                        </svg>
-                        BACK
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="19" viewBox="0 0 13 19" fill="none">
+                <path d="M0.166748 9.50002L9.66675 19L12.0417 16.625L4.9167 9.49998L12.0417 2.37499L9.6667 0L0.166748 9.50002Z" fill="#7C3EFF"/>
+            </svg>
+            BACK
+        </div>
+        <div class="singledetails" id="singlefavorite">
+            <article class="selectedjob">
+                <div class="job-details">
+                    <img src="${imageUrl}" alt="">
+                    <section>
+                        <h4>${company} - ${position} </h4>
+                        <p>${detail} </p>
+                        <div class="difficulty">
+                            Difficulty
+                            <div class="stars padlittle">
+                                ${pushDifficultyRate(difficulty)}
+                            </div>
+                        </div>
+                        <div class="continue-favorite">
+                            <button>CONTINUE JOB</button>
+                            <div class="flexlittle pointer" onclick="addToFavorites(${jobid})">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
+                                    <path d="M14.5 24.7708L12.9072 23.3208C7.24998 18.1909 3.51514 14.7966 3.51514 10.6553C3.51514 7.26099 6.17347 4.61364 9.5568 4.61364C11.4682 4.61364 13.3026 5.50341 14.5 6.89849C15.6973 5.50341 17.5318 4.61364 19.4432 4.61364C22.8265 4.61364 25.4848 7.26099 25.4848 10.6553C25.4848 14.7966 21.75 18.1909 16.0928 23.3208L14.5 24.7708Z" fill="#7C3EFF"/>
+                                </svg>FAVORITE
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+            <section class="earnings-info">
+                <div>
+                    <h4>Total Earnings</h4>
+                    <span class="total-earnings"></span>
+                </div>
+                <div>
+                    <h4>Average Job Earnings</h4>
+                    <span class="average-job-earnings"></span>
+                </div>
+                <div>
+                    <h4>Jobs Completed</h4>
+                    <span class="completed-jobs"></span>
+                </div>
+                <div>
+                    <h4>Expertise Categories</h4>
+                    <span class="expertise-categories"></span>
+                </div>
+            </section>
+            <section class="rating-completion">
+                <div class="ratings">
+                    <h5>Your Rating</h5>
+                    <img src="" alt="" class="profile-rating">
+                    <p>You’re doing great! <br>Let’s get that rating up!</p>
+                </div>
+                <div>
+                    <h5>Job Completion</h5>
+                    <div class="donut-chart">
+                        <div class="pie"></div>
+                        <section></section>
+                        <div  class="legend incomplete">
+                            <p>Incomplete jobs:</p>
+                            <span class="bold">${incompleteJobs}</span>
+                        </div>
+                        <div class="legend ontime">
+                            <p>On time jobs:</p> 
+                            <span class="bold">${onTimeJobs}</span>
+                        </div>
+                        <div class="legend late">
+                            <p>Late jobs:</p>
+                            <span class="bold">${lateJobs}</span>
+                        </div>
                     </div>
-                    <div class="singledetails" id="singlefavorite">
-                        <article class="selectedjob">
-                            <div class="job-details">
-                                <img src="${imageUrl}" alt="">
-                                <section>
-                                    <h4>${company} - ${position} </h4>
-                                    <p>${detail} </p>
-                                    <div class="difficulty">
-                                        Difficulty
-                                        <div class="stars padlittle">
-                                            ${pushDifficultyRate(difficulty)}
-                                        </div>
-                                    </div>
-                                    <div class="continue-favorite">
-                                        <button>CONTINUE JOB</button>
-                                        <div class="flexlittle pointer" onclick="addToFavorites(${jobid})">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
-                                                <path d="M14.5 24.7708L12.9072 23.3208C7.24998 18.1909 3.51514 14.7966 3.51514 10.6553C3.51514 7.26099 6.17347 4.61364 9.5568 4.61364C11.4682 4.61364 13.3026 5.50341 14.5 6.89849C15.6973 5.50341 17.5318 4.61364 19.4432 4.61364C22.8265 4.61364 25.4848 7.26099 25.4848 10.6553C25.4848 14.7966 21.75 18.1909 16.0928 23.3208L14.5 24.7708Z" fill="#7C3EFF"/>
-                                            </svg>FAVORITE
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </article>
-                        <section class="earnings-info">
-                            <div>
-                                <h4>Total Earnings</h4>
-                                <span class="total-earnings"></span>
-                            </div>
-                            <div>
-                                <h4>Average Job Earnings</h4>
-                                <span class="average-job-earnings"></span>
-                            </div>
-                            <div>
-                                <h4>Jobs Completed</h4>
-                                <span class="completed-jobs"></span>
-                            </div>
-                            <div>
-                                <h4>Expertise Categories</h4>
-                                <span class="expertise-categories"></span>
-                            </div>
-                        </section>
-                        <section class="rating-completion">
-                            <div class="ratings">
-                                <h5>Your Rating</h5>
-                                <img src="" alt="" class="profile-rating">
-                                <p>You’re doing great! <br>Let’s get that rating up!</p>
-                            </div>
-                            <div>
-                                <h5>Job Completion</h5>
-
-                            </div>
-                        </section>
-                    </div>
+                </div>
+            </section>
+        </div>
         `
+        document.querySelector('.pie').style.background = `conic-gradient(black 0.00%, #6440B3 0.00% ${incomplete}%, #EE82FF ${incomplete}% ${incomplete + late}%, #A276FF ${incomplete + late}% ${ontime}% )`
     }
     loadJobProfileData();
    }
