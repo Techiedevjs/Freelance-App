@@ -13,6 +13,10 @@
     background: #FFFFFF;
     border-radius: 5px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
 :root{
     --fontxsmall: clamp(12px, 0.8vw, 20px);
     --fontsmall: clamp(14px, 0.9vw, 30px);
@@ -26,6 +30,9 @@
     --gap: clamp(0.7rem, 0.8vw, 2rem);
     --gaplarge: clamp(1rem, 1vw, 4rem);
     --radius: clamp(12px, 0.8vw, 30px);
+}
+button{
+    border: none;
 }
 .fxs{
     font-size: var(--fontxsmall);
@@ -67,6 +74,33 @@
 .semibold{
     font-weight: 600;
 }
+.center{
+    text-align: center;
+}
+.hide{
+    opacity: 0;
+    position: absolute;
+    z-index: -100;
+    pointer-events: none;
+    transform: translateX(10vw);
+}
+.hidden{
+    display: none;
+}
+.hide-element{
+    opacity: 0;
+    position: absolute !important;
+    z-index: -100;
+    pointer-events: none;
+    transform: translateX(20vw);
+}
+.hide-display{
+    opacity: 0;
+    position: absolute;
+    z-index: -100;
+    pointer-events: none;
+    transform: translateY(20vh);
+}
 *{
     padding: 0;
     margin: 0;
@@ -85,10 +119,6 @@ body{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .escape{
     position: absolute;
@@ -107,8 +137,17 @@ body{
     border: 0;  
     font-size: calc( 0.7 * var(--fontsmall));
 }
+.display{
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 /* HOME PAGE */
-.homepage{
+.container{
     width: 70vw;
     height: 80vh;
     background-color: white;
@@ -116,18 +155,19 @@ body{
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
-.homepage header{
+.container header{
     padding: var(--padmedium);
     text-align: center;
     position: relative;
 }
-.homepage header svg{
+.container header svg{
     height: var(--fontsmall);
     position: absolute;
     left: var(--padmedium);
 }
-.homepage nav{
+.container nav{
     background: #7C3EFF;
     color: white;
     font-size: var(--fontxl);
@@ -135,76 +175,95 @@ body{
     display: flex;
     justify-content: space-between;
 }
-.homepage nav div:first-child{
+.container nav div:first-child{
     font-weight: 900;
     letter-spacing: 1.4px;
 }
-.homepage nav div:nth-child(2) p{
+.container nav div:nth-child(2) p{
     padding: calc(0.5 * var(--padlittle)) var(--padmedium);
     cursor: pointer;
     letter-spacing: 0.8px;
 }
-.homepage nav div:nth-child(2) p:hover{
+.container nav div:nth-child(2) p:hover{
     background-color: #DCCBFF;
     border-radius: 21px;
     color: #7C3EFF;
 }
-.homepage nav div:nth-child(3){
+.container nav .pressed{
+    border-radius: var(--radius);
+    background: #A276FF;
+    color: white;
+}
+.container nav div:nth-child(3){
     padding: calc(0.5 * var(--padlittle)) var(--padmedium);
     font-weight: 500;
     border-radius: calc(0.8 * var(--radius));
 }
-.homepage nav div:nth-child(3):hover{
+.container nav div:nth-child(3):hover{
     background: #A276FF;
     cursor: pointer;
 }
-.homepage nav div:nth-child(3) section p:last-child{
+.container nav div:nth-child(3) section p:last-child{
     color: rgba(255, 255, 255, 0.65);
 }
-.homepage main{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.container nav .profile-name{
+    font-size: calc(1.1 * var(--fontxsmall));
+}
+.container main{
     flex: 1;
     position: relative;
+    background: #EFF2F6;
 }
-.homepage main .heroimage{
+.home{
+    width: 100%;
+    height: 100%;
+}
+.homepage{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.homepage .heroimage{
     position: relative;
 }
-.homepage main .heroimage img{
+.homepage .heroimage img{
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.homepage main section:first-child{
+.homepage section:first-child{
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: calc(2 * var(--gaplarge));
     padding: calc(2 * var(--padlarger));
 }
-.homepage main button{
+.homepage button{
     border-radius: calc(2 * var(--radius));
     background: #7C3EFF;
-    padding: var(--padmedium);
+    padding: var(--padmedium) var(--padlarge);
     color: white;
     width: max-content;
     border: none;
+    letter-spacing: 1.9px;
     font-size: var(--fontmedium);
 }
-.homepage main button svg{
+.homepage button svg{
     height: var(--padmedium);
 }
-.homepage main button:hover{
+.homepage button:hover{
     background: #A276FF;
 }
-.homepage main h1{
+.homepage h1{
     color: #3CA5E9;
     font-size: 2.5vw;
     font-weight: 700;
     letter-spacing: 4.94px;
 }
-.homepage main p{
+.homepage section:first-child p{
     color: #716E6A;
     text-overflow: ellipsis;
     font-family: Outfit;
@@ -212,10 +271,694 @@ body{
     font-weight: 400;
     letter-spacing: 0.9px;
 }
-.homepage main .profile-section{
+.container main .profile-section{
     background-color: white;
     position: absolute;
     height: 100%;
+    top: 0;
     right: 0;
     width: 21vw;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.container main .profile-section .relative{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 1.7vw;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+.close-profile-icon{
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 1.25vw;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+.profile-section h2{
+    margin-top: var(--padmedium);
+    font-weight: 400;
+    color: #716E6A;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 1.5vw;
+    letter-spacing: 0.75px;
+}
+.profile-section h3{
+    color: #716E6A;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: var(--fontmedium);
+    font-weight: 600;
+    line-height: 104.5%; /* 20.9px */
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+.container main .profile-section .relative .career-info{
+    border-radius: var(--radius);
+    background: rgba(180, 144, 255, 0.25);
+    padding: var(--padlarge);
+    color: #7038E5;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-weight: 700;
+    letter-spacing: 0.48px;
+    display: flex;
+    flex-direction: column;
+    gap:calc(0.5 * var(--gap));
+}
+.container main .profile-section .relative .career-info span{
+    color: #3D235B;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-weight: 600;
+    line-height: 105%; 
+    letter-spacing: 0.8px;
+}
+.profile-rating{
+    width: 6vw;
+    aspect-ratio: 1/1;
+}
+.header{
+    color: #3CA5E9;
+    text-align: center;
+    font-size: 1.8vw;
+    font-weight: 700;
+    letter-spacing: 3.42px;
+    margin-bottom: 0.5rem;
+}
+.favorites, .popular, .jobs{
+    width: 100%;
+    height: 100%;
+}
+.favorites-cont, .popular-cont , .singledetails{
+    margin: auto;
+    width: 83%;
+    height: 100%;
+    position: relative;
+    padding: var(--padlarge);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.favorite-jobs, .popular-jobs{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    height: 65vh;
+    overflow-y: scroll;
+    padding-right: 1vw;
+}
+.job, .selectedjob{
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gaplarge);
+    padding: 1.3vw;
+    border-radius: var(--radius);
+    background: #FFF;
+    /* aspect-ratio: 827/190; */
+}
+.job:hover{
+    border: 2px solid rgba(127, 50, 218, 0.50);
+}
+.job .job-details img:first{
+    min-width: 7vw;
+    aspect-ratio: 1/1;
+}
+.job-details{
+    display: flex;
+    gap: var(--gaplarge);
+    flex: 4;
+    align-items: center;
+}
+.job-details section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: calc(0.5 * var(--gap));
+}
+.job-details section h4{
+    color: #3C3A36;
+    text-overflow: ellipsis;
+    font-size: var(--fontmedium);
+    font-weight: 700;
+    line-height: 104.5%;
+    letter-spacing: 0.5px;
+}
+.job-details h4{
+    text-transform: uppercase;
+}
+.job-details p{
+    color: #575756;
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    line-height: 114%;
+    letter-spacing: 0.4px;
+    text-transform: capitalize;
+}
+.job-details .difficulty{
+    color: #3C3A36;
+    font-size: var(--fontsmall);
+    font-weight: 700;
+    line-height: 114%;
+    letter-spacing: 0.32px;
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+}
+.stars{
+    display: flex;
+    align-items: center;
+    gap: calc(0.3 * var(--gap));
+}
+.stars img{
+    width: var(--fontsmall) !important;
+    aspect-ratio: 1/1;
+    display: block;
+}
+.job .last{
+    color: #575756;
+    text-overflow: ellipsis;
+    font-size: var(--fontmedium);
+    font-weight: 700;
+    line-height: 104.5%;
+    letter-spacing: 0.6px;
+    flex: 1;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+}
+.last button{
+    width: 7vw;
+    border: none;
+    border-radius: calc(1.5 * var(--radius));
+    background: #A276FF;
+    padding: var(--padlittle);
+    font-family: 'Inter';
+    font-size: var(--fontxsmall);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+.last button:hover{
+    background: #7C3EFF;
+}
+.job:hover button{
+    display: block;
+}
+/* JOBS */
+.jobs-cont{
+    height: 100%;
+    position: relative;
+    padding: var(--padlarge);
+    width: 83%;
+    margin: auto;
+}
+.jobs-container{
+    margin-top: var(--gaplarge);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gaplarge);
+}
+.search-icon{
+    background: rgba(162, 118, 255, 0.50);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--fontxl);
+    aspect-ratio: 1/1;
+}
+.search-icon svg{
+    width: var(--fontlarge);
+    height: var(--fontlarge);
+}
+.search-jobs{
+    display: flex;
+    background-color: white;
+    width: 20vw;
+    gap: var(--gap);
+    border-radius: var(--radius);
+    position: absolute;
+    top: var(--padlarge);
+    overflow: hidden;
+}
+.search-jobs input{
+    border: none;
+    outline: none;
+    padding: var(--padlittle) 0;
+}
+.search-jobs input::placeholder{
+    color: #716E6A;
+    text-overflow: ellipsis;
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    line-height: 114%;
+    letter-spacing: 0.4px;
+}
+.jobs-cont .alljobs{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    overflow-y: scroll;
+    padding-right: 1vw;
+    max-height: 60vh;
+}
+.jobs-cont .jobfilter{
+    width: 25%;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    height: max-content;
+}
+.jobfilter{
+    background-color: white;
+    padding: var(--padlarger);
+}
+.jobfilter h4{
+    color: #3C3A36;
+    text-overflow: ellipsis;
+    font-size: var(--fontmedium);
+    font-weight: 700;
+    line-height: 104.5%;
+    letter-spacing: 0.5px;
+}
+.jobfilter h5{
+    color: #434343;
+    text-overflow: ellipsis;
+    font-size: var(--fontxsmall);
+    font-weight: 700;
+    line-height: 104.5%;
+    letter-spacing: 0.35px;
+    margin-bottom: var(--padlittle);
+}
+.jobfilter .budget{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.budget input{
+    width: 43%;
+    border-radius: var(--radius);
+    border: 1px solid #808080;
+    background: #FFF;
+    padding: calc(0.5 * var(--padlittle)) var(--padlittle);
+    color: #575756;
+    font-size: var(--fontxsmall);
+    outline: none;
+}
+.budget span{
+    width: var(--fontxsmall);
+    height: 2px;
+    background: #808080;
+}
+.types, .skills{
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.5 * var(--gap));
+}
+.jobfilter .checkboxes{
+    width: max-content;
+    color: #575756;;
+}
+.jobfilter .checkbox{
+    display: flex;
+    height: var(--fontmedium);
+    aspect-ratio: 1/1;
+    background: white;
+    border: rgba(0, 0, 0, 0.455) 2px solid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+}
+.checkboxes:hover .checkbox{
+    border: rgba(124, 62, 255, 0.8) 2px solid;
+}
+.checkboxes:hover .checkbox svg path{
+    fill: rgba(124, 62, 255, 1);
+}
+.jobfilter button{
+    width: 100%;
+    border-radius: calc(1.8 * var(--radius));
+    background: #A276FF;
+    color: white;
+    border: none;
+    padding: var(--padmedium);
+    font-family: 'Inter';
+    font-size: var(--fontsmall);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+}
+.jobfilter button:hover{
+    background: #7C3EFF;
+}
+.current-jobs{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+.currentjob{
+    padding: var(--padmedium);
+    border-radius: var(--radius);
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.currentjob:hover .continuejob{
+    display: flex;
+}
+.currentjob .job-details{
+    gap: var(--gap);
+}
+.currentjob img{
+    width: 25%;
+}
+.currentjob h4{
+    font-size: var(--fontsmall) !important;
+}
+.continuejob{
+    background: rgba(172, 133, 255, 0.90);
+    letter-spacing: 0.8px;
+    font-family: 'Inter';
+    font-size: var(--fontsmall);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+    font-weight: 700;
+    display: none;
+}
+.single{
+    position: relative;
+    height: 100%;
+}
+.singledetails{
+    gap: var(--gap);
+    width: 67%;
+    height: 100%;
+    padding: var(--padlarge) 0;
+    justify-content: initial;
+}
+.singledetails .job-details img{
+    min-width: 18%;
+    /* width: 17.5vh; */
+}
+.singledetails .job-details section{
+    flex: 1;
+    justify-content: space-between;
+    gap: var(--gap);
+}
+.singledetails .continue-favorite{
+    display: flex;
+    justify-content: space-between;
+}
+.singledetails .continue-favorite button{
+    border-radius:calc(2 *  var(--radius));
+    padding: var(--padlittle) var(--padlarger);
+    background: #A276FF;
+    color: white;
+    font-family: 'Inter';
+    font-size: var(--fontsmall);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+}
+.singledetails .continue-favorite button:hover{
+    background: #7C3EFF;
+}
+.singledetails .continue-favorite .flexlittle{
+    color: #7C3EFF;
+    font-size: var(--fontxsmall);
+    font-weight: 700;
+    letter-spacing: 1.33px;
+    gap: calc(0.1 * var(--gap));
+}
+.singledetails .continue-favorite .flexlittle svg{
+    height: 1.5vw;
+    aspect-ratio: 1/1;
+}
+.back{
+    position: absolute;
+    top: 2vw;
+    left: 2vw;
+    color: #7C3EFF;
+    font-size: var(--fontmedium);
+    font-weight: 700;
+    letter-spacing: 1.9px;
+}
+.back svg{
+    height: var(--fontmedium);
+}
+.back:hover, .continue-favorite .flexlittle:hover{
+    color: #A276FF;
+}
+.back:hover svg path, .continue-favorite .flexlittle:hover svg path{
+    fill: #A276FF;
+}
+.earnings-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: var(--gap);
+}
+.earnings-info div{
+    padding: var(--padmedium);
+    border-radius: var(--radius);
+    background: rgba(180, 144, 255, 0.25);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: calc(0.4 * var(--gap));
+    flex-direction: column;
+    align-items: center;
+}
+.earnings-info div h4, .rating-completion div h5{
+    color: #7038E5;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontsmall);
+    font-weight: 700;
+    letter-spacing: 0.48px;
+}
+.earnings-info div span{
+    color: #3D235B;
+    text-align: center;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontmedium);
+    font-weight: 500;
+    letter-spacing: 0.9px;
+}
+.rating-completion{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+}
+.rating-completion div{
+    padding: var(--padmedium);
+    display: flex;
+    text-align: center;
+    gap: calc(0.5 * var(--gap));
+    flex-direction: column;
+    border-radius: var(--radius);
+    background: #FFF;
+}
+.rating-completion .ratings img{
+    width: 27%;
+    aspect-ratio: 1/1;
+    margin: auto;
+}
+.rating-completion .ratings p{
+    color: #3D235B;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    line-height: 114%; /* 20.52px */
+    letter-spacing: 0.18px;
+}
+.added-to-favorites{
+    position: absolute;
+    top: var(--gap);
+    right: var(--gap);
+    padding: var(--padmedium);
+    border-radius: var(--radius);
+    background: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.added-to-favorites h4{
+    color: #3CA5E9;
+    text-overflow: ellipsis;
+    font-size: var(--fontlarge);
+    font-weight: 500;
+    line-height: 114%;
+    letter-spacing: 0.6px;
+}
+.added-to-favorites p{
+    color: #212121;
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    line-height: 114%; /* 18.24px */
+    letter-spacing: 0.4px;
+}
+.added-to-favorites svg{
+    position: absolute;
+    top: var(--gap);
+    right: var(--gap);
+}
+.added-to-favorites img{
+    width: 23%;
+}
+.task-completed{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(30, 23, 35, 0.9);
+}
+.task-completed article{
+    background-color: white;
+    padding: calc(1.5 * var(--padlarger)) calc(2.5 * var(--padlarger));
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    justify-content: center;
+}
+.task-completed article img{
+    width: 13vw;
+    margin: auto;
+}
+.task-completed article h1{
+    color: #3CA5E9;
+    text-align: center;
+    font-size: calc(1.5 * var(--fontlarge));
+    font-weight: 700;
+    letter-spacing: 3.42px;
+}
+.task-completed article p{
+    color: #575756;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: var(--fontxsmall);
+    font-weight: 500;
+    line-height: 104.5%;
+    letter-spacing: 0.35px;
+}
+.task-completed article h4{
+    color: #7038E5;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontsmall);
+    font-weight: 700;
+    letter-spacing: 0.48px;
+}
+.task-completed section div{
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    align-items: flex-end;
+    border-radius: 20px;
+    background: rgba(180, 144, 255, 0.25);
+    padding: var(--padlittle) var(--padlarge);
+    margin-top: var(--padlittle);
+}
+.task-completed section div p{
+    color: #3D235B;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    letter-spacing: 0.9px;
+}
+.task-completed button{
+    padding: var(--padmedium) var(--padlarger);
+    border-radius: calc(2 * var(--radius));
+    background: #7C3EFF;
+    color: white;
+    width: max-content;
+    margin: auto;
+    font-size: var(--fontmedium);
+    font-weight: 700;
+    letter-spacing: 1.9px;
+    cursor: pointer;
+}
+.task-completed button:hover{
+    background: #A276FF;
+}
+.donut-chart{
+    flex: 1;
+    position: relative;
+}
+.donut-chart .pie{
+    width: 35%;
+    aspect-ratio: 1/1;
+    margin: auto; 
+    border-radius: 50%;
+}
+.donut-chart section{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60%;
+    aspect-ratio: 1/1;
+    background-color: white;
+    border-radius: 50%;
+}
+.legend{
+    background: none !important;
+    position: absolute;
+    text-align: center;
+    color: #3D235B;
+    text-shadow: 0px 0px 60px rgba(255, 255, 255, 0.15);
+    font-size: var(--fontsmall);
+    font-weight: 500;
+    letter-spacing: 0.18px;
+    width: max-content;
+    padding: 0 !important;
+    gap: 0 !important;
+}
+.incomplete{
+    right: 0;
+}
+.ontime, .late{
+    bottom: 0;
+}
+.late{
+    right: 10%;
+}
+
+@media screen and (max-width: 1500px) {
+    .container{
+        width: 80vw;
+        height: 90vh;
+    }
+    .currentjob h4{
+        font-size: var(--fontxsmall) !important;
+    }
+    .currentjob .difficulty{
+        font-size: var(--fontxsmall);
+        gap: calc(0.5 * var(--gap));
+    }
+    .currentjob .difficulty .stars{
+        gap: calc(0.2 * var(--gap));
+    }
+}
+@media screen and (max-height: 700px){
+    .favorite-jobs, .popular-jobs{
+        height: 60vh;
+    }
 }
