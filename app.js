@@ -69,12 +69,12 @@ pages.map((p) => {
             document.querySelector('.homepage').classList.remove('hide-element')
         }
         if(name === 'jobs'){
-            document.querySelector(`.jobs-single`).classList.add('hidden');
-            document.querySelector(`.jobs-cont`).classList.remove('hidden');
+            document.querySelector(`.jobs-single`).classList.add('hide-element');
+            document.querySelector(`.jobs-cont`).classList.remove('hide-element');
         }
         if(name === 'favorites'){
-            document.querySelector(`.favorites-single`).classList.add('hidden');
-            document.querySelector(`.favorites-cont`).classList.remove('hidden');
+            document.querySelector(`.favorites-single`).classList.add('hide-element');
+            document.querySelector(`.favorites-cont`).classList.remove('hide-element');
         }
         tab.classList.add('pressed');
         page.classList.remove('hide-element');
@@ -284,7 +284,7 @@ const pushCurrentJobs = (data) => {
 }
 const continueJob = (id) => {
     let job = jobs.filter(j => j.jobid === id);
-    document.querySelector('.task-completed').classList.remove('hidden');
+    document.querySelector('.task-completed').classList.remove('hide');
     document.querySelector('.task-company').innerHTML = job[0].company;
     document.querySelector('.task-pay').innerHTML = '$' + job[0].pay;
 }
@@ -297,8 +297,8 @@ const viewJob = ( jobid, name) => {
         let incomplete = (incompleteJobs/totaljobs) * 100;
         let late = (lateJobs/totaljobs) * 100;
         let ontime = (onTimeJobs/totaljobs) * 100;
-        document.querySelector(`.${name}-single`).classList.remove('hidden');
-        document.querySelector(`.${name}-cont`).classList.add('hidden');
+        document.querySelector(`.${name}-single`).classList.remove('hide-element');
+        document.querySelector(`.${name}-cont`).classList.add('hide-element');
         document.querySelector(`.${name}-single`).innerHTML = `
         <div class="back flexsmall pointer" onclick="backToPrevious('${name}')">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="19" viewBox="0 0 13 19" fill="none">
@@ -381,11 +381,11 @@ const viewJob = ( jobid, name) => {
     loadJobProfileData();
    }
 const backToPrevious = (name) => {
-    document.querySelector(`.${name}-single`).classList.add('hidden');
-    document.querySelector(`.${name}-cont`).classList.remove('hidden');
+    document.querySelector(`.${name}-single`).classList.add('hide-element');
+    document.querySelector(`.${name}-cont`).classList.remove('hide-element');
 }
 const backToAllJobs = () => {
-    document.querySelector('.task-completed').classList.add('hidden');
+    document.querySelector('.task-completed').classList.add('hide');
 }
 const addToFavorites = (id) => {
     jobs = jobs.map((job) => {
@@ -418,7 +418,6 @@ document.querySelector('#searchjobs').addEventListener('input', (e) => {
 const searchBasedOnBudgets = () => {
     let minvalue = document.querySelector('#min').value;
     let maxvalue = document.querySelector('#max').value;
-    console.log(minvalue)
     let data
     if (minvalue && maxvalue){
         data = jobs.filter((job) => job.pay >= parseInt(minvalue) && job.pay <= parseInt(maxvalue));   
