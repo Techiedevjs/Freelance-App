@@ -85,7 +85,18 @@ button{
     transform: translateX(10vw);
 }
 .hide-element{
-    display: none !important;
+    opacity: 0;
+    position: absolute !important;
+    z-index: -100;
+    pointer-events: none;
+    transform: translateX(20vw);
+}
+.hide-display{
+    opacity: 0;
+    position: absolute;
+    z-index: -100;
+    pointer-events: none;
+    transform: translateY(20vh);
 }
 *{
     padding: 0;
@@ -105,10 +116,6 @@ body{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .escape{
     position: absolute;
@@ -126,6 +133,15 @@ body{
     border-radius: calc(0.5 * var(--radius));
     border: 0;  
     font-size: calc( 0.7 * var(--fontsmall));
+}
+.display{
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 /* HOME PAGE */
 .container{
@@ -279,6 +295,7 @@ body{
     cursor: pointer;
 }
 .profile-section h2{
+    margin-top: var(--padmedium);
     font-weight: 400;
     color: #716E6A;
     text-align: center;
@@ -327,7 +344,7 @@ body{
     letter-spacing: 3.42px;
     margin-bottom: 0.5rem;
 }
-.favorites{
+.favorites, .popular, .jobs{
     width: 100%;
     height: 100%;
 }
@@ -356,6 +373,7 @@ body{
     padding: 1.3vw;
     border-radius: var(--radius);
     background: #FFF;
+    /* aspect-ratio: 827/190; */
 }
 .job:hover{
     border: 2px solid rgba(127, 50, 218, 0.50);
@@ -577,6 +595,12 @@ body{
     align-items: center;
     border-radius: 2px;
 }
+.checkboxes:hover .checkbox{
+    border: rgba(124, 62, 255, 0.8) 2px solid;
+}
+.checkboxes:hover .checkbox svg path{
+    fill: rgba(124, 62, 255, 1);
+}
 .jobfilter button{
     width: 100%;
     border-radius: calc(1.8 * var(--radius));
@@ -638,19 +662,23 @@ body{
 }
 .single{
     position: relative;
+    height: 100%;
 }
 .singledetails{
     gap: var(--gap);
-    width: 66%;
+    width: 67%;
+    height: 100%;
+    padding: var(--padlarge) 0;
+    justify-content: initial;
 }
 .singledetails .job-details img{
-    min-width: 20%;
+    min-width: 18%;
     /* width: 17.5vh; */
 }
 .singledetails .job-details section{
     flex: 1;
-    height: 100%;
     justify-content: space-between;
+    gap: var(--gap);
 }
 .singledetails .continue-favorite{
     display: flex;
@@ -745,7 +773,7 @@ body{
     background: #FFF;
 }
 .rating-completion .ratings img{
-    width: 26%;
+    width: 27%;
     aspect-ratio: 1/1;
     margin: auto;
 }
