@@ -1,6 +1,6 @@
 const profile = {
-    firstName: "Elon",
-    lastName: "Musk",
+    firstName: "Debbie",
+    lastName: "Sussie",
     walletBalance: 3500,
     rating: "C",
     totalEarnings: 75450,
@@ -9,9 +9,9 @@ const profile = {
     expertise: "Backend Developer",
     expertiseCategories: 3,
     jobCompletion: {
-        incompleteJobs : 25,
+        incompleteJobs : 45,
         onTimeJobs: 79,
-        lateJobs: 26
+        lateJobs: 56
     }
 }
 document.querySelectorAll('.profile-name').forEach(elem => {
@@ -100,7 +100,9 @@ let jobs = [
         imageUrl: "images/job1.png",
         pay: 540,
         favorite: true,
-        popular: true
+        popular: true,
+        type: "local",
+        skill: "javascript"
     },
     {
         jobid: 2,
@@ -112,7 +114,9 @@ let jobs = [
         pay: 650,
         favorite: false,
         popular: true,
-        current:true
+        current:true,
+        type: "featured",
+        skill: "css"
     },
     {
         jobid: 3,
@@ -123,7 +127,9 @@ let jobs = [
         imageUrl: "images/job5.png",
         pay: 595,
         favorite: true,
-        popular: true
+        popular: true,
+        type: "fulltime",
+        skill: "html"
     },
     {
         jobid: 4,
@@ -133,7 +139,9 @@ let jobs = [
         difficulty: 1,
         imageUrl: "images/job2.png",
         pay: 1360,
-        favorite: true
+        favorite: true,
+        type: "recruiter",
+        skill: "php"
     },
     {
         jobid: 5,
@@ -144,7 +152,8 @@ let jobs = [
         imageUrl: "images/job3.png",
         pay: 1650,
         favorite: false,
-        current:true
+        type: "featured",
+        skill: "html"
     },
     {
         jobid: 6,
@@ -154,7 +163,9 @@ let jobs = [
         difficulty: 4,
         imageUrl: "images/job5.png",
         pay: 395,
-        favorite: false
+        favorite: false,
+        type: "local",
+        skill: "javascript"
     },
 ]
 const pushDifficultyRate = (difficulty) => {
@@ -218,6 +229,7 @@ const pushFavoriteJobs = (data) => {
 }
 const pushPopularJobs = (data) => {
     document.querySelector('.popular-jobs').innerHTML = "";
+    console.log("working")
     data.map((job) => {
         if(job.popular){
             const {company, position, detail, difficulty, imageUrl, pay, jobid} = job;
@@ -264,11 +276,17 @@ const pushCurrentJobs = (data) => {
                         </div>
                     </section>
                 </div>
-                <div class="continuejob"> CONTINUE JOB </div>
+                <div class="continuejob" onclick="continueJob(${jobid})"> CONTINUE JOB </div>
             </article> 
             `
         }
     })
+}
+const continueJob = (id) => {
+    let job = jobs.filter(j => j.jobid === id);
+    document.querySelector('.task-completed').classList.remove('hidden');
+    document.querySelector('.task-company').innerHTML = job[0].company;
+    document.querySelector('.task-pay').innerHTML = '$' + job[0].pay;
 }
 const viewJob = ( jobid, name) => {
     let job = jobs.filter(j => j.jobid === jobid);
@@ -302,7 +320,7 @@ const viewJob = ( jobid, name) => {
                             </div>
                         </div>
                         <div class="continue-favorite">
-                            <button>CONTINUE JOB</button>
+                            <button onclick="continueJob(${jobid})">CONTINUE JOB</button>
                             <div class="flexlittle pointer" onclick="addToFavorites(${jobid})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
                                     <path d="M14.5 24.7708L12.9072 23.3208C7.24998 18.1909 3.51514 14.7966 3.51514 10.6553C3.51514 7.26099 6.17347 4.61364 9.5568 4.61364C11.4682 4.61364 13.3026 5.50341 14.5 6.89849C15.6973 5.50341 17.5318 4.61364 19.4432 4.61364C22.8265 4.61364 25.4848 7.26099 25.4848 10.6553C25.4848 14.7966 21.75 18.1909 16.0928 23.3208L14.5 24.7708Z" fill="#7C3EFF"/>
@@ -358,13 +376,16 @@ const viewJob = ( jobid, name) => {
             </section>
         </div>
         `
-        document.querySelector('.pie').style.background = `conic-gradient(black 0.00%, #6440B3 0.00% ${incomplete}%, #EE82FF ${incomplete}% ${incomplete + late}%, #A276FF ${incomplete + late}% ${ontime}% )`
+        document.querySelectorAll('.pie').forEach(elem => elem.style.background = `conic-gradient(black 0.00%, #6440B3 0.00% ${incomplete}%, #EE82FF ${incomplete}% ${incomplete + late}%, #A276FF ${incomplete + late}% ${ontime}% )`)
     }
     loadJobProfileData();
    }
 const backToPrevious = (name) => {
     document.querySelector(`.${name}-single`).classList.add('hidden');
     document.querySelector(`.${name}-cont`).classList.remove('hidden');
+}
+const backToAllJobs = () => {
+    document.querySelector('.task-completed').classList.add('hidden');
 }
 const addToFavorites = (id) => {
     jobs = jobs.map((job) => {
@@ -387,7 +408,7 @@ const cancelAddToFavorites = () => {
 pushAllJobs(jobs);
 pushFavoriteJobs(jobs);
 pushPopularJobs(jobs);
-pushCurrentJobs(jobs)
+pushCurrentJobs(jobs);
 // SEARCH JOBS
 document.querySelector('#searchjobs').addEventListener('input', (e) => {
     let value = e.target.value;
@@ -413,9 +434,50 @@ const searchBasedOnBudgets = () => {
         pushAllJobs(jobs)
     }
 }
+let filters = []
+const filterByOption = (value, filt) => {
+    document.querySelector(`.${value}check`).classList.toggle('hidden');
+    if(!filters.includes(value)){
+        filters.push(value)
+        console.log(filters)
+        filterData(filt)
+    } else {
+        filters = filters.filter(i => i !== value )
+        console.log(filters)
+        filterData(filt)
+    }
+}
+const filterData = (filt) => {
+    let data = []
+    if(!filters.length){
+        pushAllJobs(jobs)
+        data;
+    } else {
+        filters.map((i) => {
+            jobs.filter((job) => job[filt].includes(i)).map((j) => {
+                data.push(j)
+            })
+            console.log(data);
+        })
+        pushAllJobs(data)
+    }
+}
 const resetFilter = () => {
     document.querySelector('#min').value = '';
     document.querySelector('#max').value = '';
     document.querySelector('#searchjobs').value = '';
+    document.querySelectorAll('.checkbox').forEach((elem) => {
+        elem.firstElementChild.classList.add('hidden')
+    })
+    filters = []
     pushAllJobs(jobs)
 }
+
+const toggleDisplay = () =>{
+    document.querySelector('.display').classList.toggle('hide-display')
+}
+document.addEventListener('keydown', evt => {
+    if (evt.key === 'Home') {
+        toggleDisplay();
+    }
+});
