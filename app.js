@@ -409,56 +409,66 @@ pushAllJobs(jobs);
 pushFavoriteJobs(jobs);
 pushPopularJobs(jobs);
 pushCurrentJobs(jobs);
-// SEARCH JOBS
-document.querySelector('#searchjobs').addEventListener('input', (e) => {
-    let value = e.target.value;
-    let data = jobs.filter((job) => job.position.includes(value.toLowerCase()) || job.company.includes(value.toLowerCase()));
-    pushAllJobs(data)
-})
-const searchBasedOnBudgets = () => {
-    let minvalue = document.querySelector('#min').value;
-    let maxvalue = document.querySelector('#max').value;
-    let data
-    if (minvalue && maxvalue){
-        data = jobs.filter((job) => job.pay >= parseInt(minvalue) && job.pay <= parseInt(maxvalue));   
-        pushAllJobs(data)
-    } else if(minvalue){
-        data = jobs.filter((job) => job.pay >= parseInt(minvalue));   
-        pushAllJobs(data)
-    } else if (maxvalue){
-        data = jobs.filter((job) => job.pay <= parseInt(maxvalue));   
-        pushAllJobs(data)
-    }
-    else {
-        pushAllJobs(jobs)
-    }
+// SEARCH & QUERY JOBS
+let searchQuery = {
+    searchvalue: "",
+    min: 0,
+    max: 0,
+    type: [],
+    skill: []
 }
-let filters = []
+const queryValues = () => {
+    const {searchvalue, min, max, type, skill} = searchQuery
+    let ddd =[]
+    let queriedtype = []
+    let queriedskill = []
+    jobs.map((job) => {if(job.position.includes(searchvalue) || job.company.includes(searchvalue)){ ddd.push(job)}})
+    if (min && max){
+        ddd = ddd.filter((job) => job.pay >= min && job.pay <= max);   
+    } else if(min){
+        ddd = ddd.filter((job) => job.pay >= min);   
+    } else if (max){
+        ddd = ddd.filter((job) => job.pay <= max);   
+    }
+    if(type.length > 0){
+        type.map((i) => {
+            ddd.filter((job) => job.type.includes(i)).map((j) => {
+                queriedtype.push(j)
+            })
+        })
+        ddd = queriedtype
+    }
+    if(skill.length > 0){
+        skill.map((i) => {
+            ddd.filter((job) => job.skill.includes(i)).map((j) => {
+                queriedskill.push(j)
+            })
+        })
+        ddd = queriedskill
+    }
+    pushAllJobs(ddd)
+    console.log(searchQuery)
+}
+document.querySelector('#searchjobs').addEventListener('input', (e) => {
+    searchQuery.searchvalue = e.target.value.toLowerCase();
+    queryValues()
+})
+document.querySelector('#min').addEventListener('input', (e) => {
+    searchQuery.min = parseInt(e.target.value);
+    queryValues()
+})
+document.querySelector('#max').addEventListener('input', (e) => {
+    searchQuery.max = parseInt(e.target.value);
+    queryValues()
+})
 const filterByOption = (value, filt) => {
     document.querySelector(`.${value}check`).classList.toggle('hidden');
-    if(!filters.includes(value)){
-        filters.push(value)
-        console.log(filters)
-        filterData(filt)
+    if(searchQuery[filt].includes(value)){
+        searchQuery[filt] = searchQuery[filt].filter(i => i !== value)
+        queryValues()
     } else {
-        filters = filters.filter(i => i !== value )
-        console.log(filters)
-        filterData(filt)
-    }
-}
-const filterData = (filt) => {
-    let data = []
-    if(!filters.length){
-        pushAllJobs(jobs)
-        data;
-    } else {
-        filters.map((i) => {
-            jobs.filter((job) => job[filt].includes(i)).map((j) => {
-                data.push(j)
-            })
-            console.log(data);
-        })
-        pushAllJobs(data)
+        searchQuery[filt].push(value)
+        queryValues()
     }
 }
 const resetFilter = () => {
@@ -468,10 +478,8 @@ const resetFilter = () => {
     document.querySelectorAll('.checkbox').forEach((elem) => {
         elem.firstElementChild.classList.add('hidden')
     })
-    filters = []
     pushAllJobs(jobs)
 }
-
 const toggleDisplay = () =>{
     document.querySelector('.display').classList.toggle('hide-display')
 }
