@@ -39,10 +39,10 @@ const loadJobProfileData = () => {
 }
 loadJobProfileData();
 const openProfileMenu = () => {
-    document.querySelector('.profile-section').classList.remove('hide')
+    document.querySelector('.profile-section').classList.remove('hideprofile')
 }
 const closeProfileMenu = () => {
-    document.querySelector('.profile-section').classList.add('hide')
+    document.querySelector('.profile-section').classList.add('hideprofile')
 }
 const pages = [
     {
@@ -84,6 +84,7 @@ pages.map((p) => {
                 i.page.classList.add('hide-element');
             }
         })
+        closeProfileMenu()
     })
 })
 const showPopularJobs = () => {
@@ -391,7 +392,7 @@ const addToFavorites = (id) => {
     jobs = jobs.map((job) => {
         if ( job.jobid === id){
             const {company, position, imageUrl} = job
-            document.querySelector('.added-to-favorites').classList.remove('hide')
+            document.querySelector('.added-to-favorites').classList.remove('hideprofile')
             document.querySelector('.jobimages').src = imageUrl
             document.querySelector('.company-position').innerHTML = company + '-' + position+'...';
             return {...job, favorite: true}
@@ -403,7 +404,7 @@ const addToFavorites = (id) => {
     pushFavoriteJobs(jobs)    
 }
 const cancelAddToFavorites = () => {
-    document.querySelector('.added-to-favorites').classList.add('hide')
+    document.querySelector('.added-to-favorites').classList.add('hideprofile')
 }
 pushAllJobs(jobs);
 pushFavoriteJobs(jobs);
