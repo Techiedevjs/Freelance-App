@@ -284,7 +284,7 @@ const pushCurrentJobs = (data) => {
 }
 const continueJob = (id) => {
     let job = jobs.filter(j => j.jobid === id);
-    document.querySelector('.task-completed').classList.remove('hide');
+    document.querySelector('.task-completed').classList.remove('hidetask');
     document.querySelector('.task-company').innerHTML = job[0].company;
     document.querySelector('.task-pay').innerHTML = '$' + job[0].pay;
 }
@@ -385,7 +385,7 @@ const backToPrevious = (name) => {
     document.querySelector(`.${name}-cont`).classList.remove('hide-element');
 }
 const backToAllJobs = () => {
-    document.querySelector('.task-completed').classList.add('hide');
+    document.querySelector('.task-completed').classList.add('hidetask');
 }
 const addToFavorites = (id) => {
     jobs = jobs.map((job) => {
