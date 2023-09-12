@@ -77,13 +77,6 @@ button{
 .center{
     text-align: center;
 }
-.hide{
-    opacity: 0;
-    position: absolute;
-    z-index: -100;
-    pointer-events: none;
-    transform: translateX(10vw);
-}
 .hidetask{
     opacity: 0;
     z-index: -100;
@@ -106,6 +99,19 @@ button{
     z-index: -100;
     pointer-events: none;
     transform: translateY(20vh);
+}
+.hide{
+    opacity: 0;
+    position: absolute;
+    z-index: -100;
+    pointer-events: none;
+    transform: translateX(10vw) !important;
+}
+.hideprofile{
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    transform: translateX(10vw) !important;
 }
 *{
     padding: 0;
@@ -384,6 +390,7 @@ body{
     border-radius: var(--radius);
     background: #FFF;
     margin: 2px;
+    outline: 2px solid transparent;
     /* aspect-ratio: 827/190; */
 }
 .job:hover{
@@ -470,6 +477,7 @@ body{
     letter-spacing: 0.8px;
     color: transparent;
     cursor: pointer;
+    opacity: 0;
     /* display: none; */
 }
 .last button:hover{
@@ -480,6 +488,7 @@ body{
     padding: var(--padlittle);
     /* display: block; */
     color: white;
+    opacity: 1;
 }
 /* JOBS */
 .jobs-cont{
@@ -501,12 +510,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    /* height: 30px; */
     width: calc(1.25 * var(--fontxl));
-}
-.search-icon svg{
-    /* width: var(--fontlarge);
-    height: var(--fontlarge); */
 }
 .search-jobs{
     display: flex;
@@ -517,6 +521,13 @@ body{
     position: absolute;
     top: var(--padlarge);
     overflow: hidden;
+    outline: transparent 2px solid;
+}
+.search-jobs:has(input:focus) .search-icon{
+    background: #A276FF;
+}
+.search-jobs:has(input:focus){
+    outline: #A276FF 2px solid;
 }
 .search-jobs input{
     border: none;
@@ -584,6 +595,9 @@ body{
     color: #575756;
     font-size: var(--fontxsmall);
     outline: none;
+}
+.budget input:focus{
+    border: 1px solid rgba(124, 62, 255, 0.80);
 }
 .budget span{
     width: var(--fontxsmall);
