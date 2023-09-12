@@ -84,6 +84,12 @@ button{
     pointer-events: none;
     transform: translateX(10vw);
 }
+.hidetask{
+    opacity: 0;
+    z-index: -100;
+    pointer-events: none;
+    position: absolute;
+}
 .hidden{
     display: none;
 }
@@ -368,6 +374,7 @@ body{
     height: 65vh;
     overflow-y: scroll;
     padding-right: 1vw;
+    overflow-x: hidden;
 }
 .job, .selectedjob{
     display: flex;
@@ -376,10 +383,11 @@ body{
     padding: 1.3vw;
     border-radius: var(--radius);
     background: #FFF;
+    margin: 2px;
     /* aspect-ratio: 827/190; */
 }
 .job:hover{
-    border: 2px solid rgba(127, 50, 218, 0.50);
+    outline: 2px solid rgba(127, 50, 218, 0.50);
 }
 .job .job-details img:first{
     min-width: 7vw;
@@ -452,24 +460,26 @@ body{
     height: 100%;
 }
 .last button{
-    width: 7vw;
+    width: 0;
     border: none;
     border-radius: calc(1.5 * var(--radius));
     background: #A276FF;
-    padding: var(--padlittle);
     font-family: 'Inter';
     font-size: var(--fontxsmall);
     font-weight: 700;
     letter-spacing: 0.8px;
-    color: white;
+    color: transparent;
     cursor: pointer;
-    display: none;
+    /* display: none; */
 }
 .last button:hover{
     background: #7C3EFF;
 }
 .job:hover button{
-    display: block;
+    width: 7vw;
+    padding: var(--padlittle);
+    /* display: block; */
+    color: white;
 }
 /* JOBS */
 .jobs-cont{
@@ -487,23 +497,23 @@ body{
 }
 .search-icon{
     background: rgba(162, 118, 255, 0.50);
-    border-radius: var(--radius);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--fontxl);
-    aspect-ratio: 1/1;
+    /* height: 30px; */
+    width: calc(1.25 * var(--fontxl));
 }
 .search-icon svg{
-    width: var(--fontlarge);
-    height: var(--fontlarge);
+    /* width: var(--fontlarge);
+    height: var(--fontlarge); */
 }
 .search-jobs{
     display: flex;
     background-color: white;
     width: 20vw;
     gap: var(--gap);
-    border-radius: var(--radius);
+    border-radius: 20px;
     position: absolute;
     top: var(--padlarge);
     overflow: hidden;
@@ -529,6 +539,7 @@ body{
     overflow-y: scroll;
     padding-right: 1vw;
     max-height: 60vh;
+    overflow-x: hidden;
 }
 .jobs-cont .jobfilter{
     width: 25%;
