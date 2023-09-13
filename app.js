@@ -146,8 +146,8 @@ let jobs = [
     },
     {
         jobid: 5,
-        company: "Ragnorxk",
-        position: "Marketer",
+        company: "ragnorxk",
+        position: "marketer",
         detail: "selling our products in the digital space",
         difficulty: 5,
         imageUrl: "images/job3.png",
@@ -419,37 +419,26 @@ let searchQuery = {
     skill: []
 }
 const queryValues = () => {
-    const {searchvalue, min, max, type, skill} = searchQuery
-    let ddd =[]
-    let queriedtype = []
-    let queriedskill = []
-    jobs.map((job) => {if(job.position.includes(searchvalue) || job.company.includes(searchvalue)){ ddd.push(job)}})
-    if (min && max){
-        ddd = ddd.filter((job) => job.pay >= min && job.pay <= max);   
-    } else if(min){
-        ddd = ddd.filter((job) => job.pay >= min);   
-    } else if (max){
-        ddd = ddd.filter((job) => job.pay <= max);   
+    const { searchvalue, min, max, type, skill } = searchQuery;
+    let filteredJobs = jobs.filter(job => 
+      job.position.toLowerCase().includes(searchvalue) || 
+      job.company.toLowerCase().includes(searchvalue)
+    );
+    if (min) {
+      filteredJobs = filteredJobs.filter(job => job.pay >= min);
     }
-    if(type.length > 0){
-        type.map((i) => {
-            ddd.filter((job) => job.type.includes(i)).map((j) => {
-                queriedtype.push(j)
-            })
-        })
-        ddd = queriedtype
+    if (max) {
+      filteredJobs = filteredJobs.filter(job => job.pay <= max);
     }
-    if(skill.length > 0){
-        skill.map((i) => {
-            ddd.filter((job) => job.skill.includes(i)).map((j) => {
-                queriedskill.push(j)
-            })
-        })
-        ddd = queriedskill
+    if (type.length > 0) {
+      filteredJobs = filteredJobs.filter(job => type.includes(job.type));
     }
-    pushAllJobs(ddd)
-    console.log(searchQuery)
-}
+    if (skill.length > 0) {
+      filteredJobs = filteredJobs.filter(job => skill.includes(job.skill));
+    }
+    pushAllJobs(filteredJobs);
+    console.log(searchQuery);
+  };
 document.querySelector('#searchjobs').addEventListener('input', (e) => {
     searchQuery.searchvalue = e.target.value.toLowerCase();
     queryValues()
