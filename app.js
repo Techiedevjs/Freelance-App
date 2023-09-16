@@ -69,13 +69,12 @@ pages.map((p) => {
             document.querySelector('.homepage').classList.remove('hide-element')
         }
         if(name === 'jobs'){
-            document.querySelector(`.jobs-single`).classList.add('hide-element');
             document.querySelector(`.jobs-cont`).classList.remove('hide-element');
         }
         if(name === 'favorites'){
-            document.querySelector(`.favorites-single`).classList.add('hide-element');
             document.querySelector(`.favorites-cont`).classList.remove('hide-element');
         }
+        document.querySelector(`.view-current`).classList.add('hide-element');
         tab.classList.add('pressed');
         page.classList.remove('hide-element');
         pages.map((i) => {
@@ -102,7 +101,7 @@ let jobs = [
         pay: 540,
         favorite: true,
         popular: true,
-        type: "local",
+        type: "remote",
         skill: "javascript"
     },
     {
@@ -116,7 +115,7 @@ let jobs = [
         favorite: false,
         popular: true,
         current:true,
-        type: "featured",
+        type: "remote",
         skill: "css"
     },
     {
@@ -129,7 +128,7 @@ let jobs = [
         pay: 595,
         favorite: true,
         popular: true,
-        type: "fulltime",
+        type: "onsite",
         skill: "html"
     },
     {
@@ -141,7 +140,7 @@ let jobs = [
         imageUrl: "images/job2.png",
         pay: 1360,
         favorite: true,
-        type: "recruiter",
+        type: "onsite",
         skill: "php"
     },
     {
@@ -153,7 +152,7 @@ let jobs = [
         imageUrl: "images/job3.png",
         pay: 1650,
         favorite: false,
-        type: "featured",
+        type: "remote",
         skill: "html"
     },
     {
@@ -165,7 +164,7 @@ let jobs = [
         imageUrl: "images/job5.png",
         pay: 395,
         favorite: false,
-        type: "local",
+        type: "onsite",
         skill: "javascript"
     },
 ]
@@ -175,28 +174,30 @@ const pushDifficultyRate = (difficulty) => {
 const pushAllJobs = (data) => {
     document.querySelector('.alljobs').innerHTML = "";
     data.map((job) => {
-        const {company, position, detail, difficulty, imageUrl, pay, jobid} = job;
-        document.querySelector('.alljobs').innerHTML += `
-        <article class="job">
-            <div class="job-details">
-                <img src="${imageUrl}" alt="">
-                <section>
-                    <h4>${company} - ${position}</h4>
-                    <p>${detail}</p>
-                    <div class="difficulty">
-                        Difficulty
-                        <div class="stars padlittle">
-                            ${pushDifficultyRate(difficulty)}
+        if(!job.current){
+            const {company, position, detail, difficulty, imageUrl, pay, jobid} = job;
+            document.querySelector('.alljobs').innerHTML += `
+            <article class="job">
+                <div class="job-details">
+                    <img src="${imageUrl}" alt="">
+                    <section>
+                        <h4>${company} - ${position}</h4>
+                        <p>${detail}</p>
+                        <div class="difficulty">
+                            Difficulty
+                            <div class="stars padlittle">
+                                ${pushDifficultyRate(difficulty)}
+                            </div>
                         </div>
-                    </div>
-                </section>
-            </div>
-            <div class="last">
-                <p>$${pay}</p>
-                <button onclick="viewJob(${jobid}, 'jobs')">DETAILS</button>
-            </div>
-        </article>
-        `
+                    </section>
+                </div>
+                <div class="last">
+                    <p>$${pay}</p>
+                    <button class="accept" onclick="checkIsCurrent(${jobid})">ACCEPT JOB</button>
+                </div>
+            </article>
+            `
+        }
     })
 }
 const pushFavoriteJobs = (data) => {
@@ -221,7 +222,7 @@ const pushFavoriteJobs = (data) => {
                 </div>
                 <div class="last">
                     <p>$${pay}</p>
-                    <button onclick="viewJob(${jobid}, 'favorites')">DETAILS</button>
+                    <button class="accept" onclick="checkIsCurrent(${jobid})">ACCEPT JOB</button>
                 </div>
             </article>
             `
@@ -230,7 +231,6 @@ const pushFavoriteJobs = (data) => {
 }
 const pushPopularJobs = (data) => {
     document.querySelector('.popular-jobs').innerHTML = "";
-    console.log("working")
     data.map((job) => {
         if(job.popular){
             const {company, position, detail, difficulty, imageUrl, pay, jobid} = job;
@@ -251,7 +251,7 @@ const pushPopularJobs = (data) => {
                 </div>
                 <div class="last">
                     <p>$${pay}</p>
-                    <button onclick="viewJob(${jobid}, 'popular')">DETAILS</button>
+                    <button class="accept" onclick="checkIsCurrent(${jobid})">ACCEPT JOB</button>
                 </div>
             </article>
             `
@@ -277,7 +277,7 @@ const pushCurrentJobs = (data) => {
                         </div>
                     </section>
                 </div>
-                <div class="continuejob" onclick="continueJob(${jobid})"> CONTINUE JOB </div>
+                <div class="continuejob" onclick="viewJob(${jobid})"> CONTINUE JOB </div>
             </article> 
             `
         }
@@ -285,10 +285,40 @@ const pushCurrentJobs = (data) => {
 }
 const continueJob = (id) => {
     let job = jobs.filter(j => j.jobid === id);
+    document.querySelector(`.view-current`).classList.add('hide-element');
+    document.querySelector('.profile-section').classList.add('hideprofile')
     document.querySelector('.task-completed').classList.remove('hidetask');
     document.querySelector('.task-company').innerHTML = job[0].company;
     document.querySelector('.task-pay').innerHTML = '$' + job[0].pay;
 }
+const acceptJob = (jobid, page) => {
+    jobs = jobs.map((j) => {
+        if(j.jobid === jobid){
+            return {...j, current: true,  favorite:false, popular:false}
+        } else{
+            return {...j}
+        }
+    })
+    document.querySelector('.profile-section').classList.remove('hideprofile')
+    pushCurrentJobs(jobs)
+    pushAllJobs(jobs)
+    pushFavoriteJobs(jobs)
+    pushPopularJobs(jobs)
+}
+const checkIsCurrent = (jobid) => {
+    let isCurrent = jobs.filter((job) => job.current)
+    if(isCurrent.length > 0){
+        document.querySelectorAll('.accept').forEach((elem) => {
+            elem.classList.add('block');
+        })
+    } else {
+        acceptJob(jobid)
+        document.querySelectorAll('.accept').forEach((elem) => {
+            elem.classList.add('block');
+        })
+    }
+}
+// checkIsCurrent(jobs);
 const viewJob = ( jobid, name) => {
     let job = jobs.filter(j => j.jobid === jobid);
     if(job.length){
@@ -298,10 +328,10 @@ const viewJob = ( jobid, name) => {
         let incomplete = (incompleteJobs/totaljobs) * 100;
         let late = (lateJobs/totaljobs) * 100;
         let ontime = (onTimeJobs/totaljobs) * 100;
-        document.querySelector(`.${name}-single`).classList.remove('hide-element');
-        document.querySelector(`.${name}-cont`).classList.add('hide-element');
-        document.querySelector(`.${name}-single`).innerHTML = `
-        <div class="back flexsmall pointer" onclick="backToPrevious('${name}')">
+        document.querySelector(`.view-current`).classList.remove('hide-element');
+        document.querySelector('.profile-section').classList.add('hideprofile')
+        document.querySelector(`.single`).innerHTML = `
+        <div class="back flexsmall pointer" onclick="backToPrevious()">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="19" viewBox="0 0 13 19" fill="none">
                 <path d="M0.166748 9.50002L9.66675 19L12.0417 16.625L4.9167 9.49998L12.0417 2.37499L9.6667 0L0.166748 9.50002Z" fill="#7C3EFF"/>
             </svg>
@@ -357,9 +387,11 @@ const viewJob = ( jobid, name) => {
                 </div>
                 <div>
                     <h5>Job Completion</h5>
-                    <div class="donut-chart">
-                        <div class="pie"></div>
+                    <section class="donut-chart">
+                        <div class="pie">
                         <section></section>
+                        </div>
+                        
                         <div  class="legend incomplete">
                             <p>Incomplete jobs:</p>
                             <span class="bold">${incompleteJobs}</span>
@@ -372,7 +404,7 @@ const viewJob = ( jobid, name) => {
                             <p>Late jobs:</p>
                             <span class="bold">${lateJobs}</span>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </section>
         </div>
@@ -382,8 +414,7 @@ const viewJob = ( jobid, name) => {
     loadJobProfileData();
    }
 const backToPrevious = (name) => {
-    document.querySelector(`.${name}-single`).classList.add('hide-element');
-    document.querySelector(`.${name}-cont`).classList.remove('hide-element');
+    document.querySelector(`.view-current`).classList.add('hide-element');
 }
 const backToAllJobs = () => {
     document.querySelector('.task-completed').classList.add('hidetask');
@@ -438,7 +469,7 @@ const queryValues = () => {
     }
     pushAllJobs(filteredJobs);
     console.log(searchQuery);
-  };
+};
 document.querySelector('#searchjobs').addEventListener('input', (e) => {
     searchQuery.searchvalue = e.target.value.toLowerCase();
     queryValues()
