@@ -374,7 +374,7 @@ body{
     width: 100%;
     height: 100%;
 }
-.favorites-cont, .popular-cont , .singledetails{
+.favorites-cont, .popular-cont{
     margin: auto;
     width: 83%;
     height: 100%;
@@ -421,7 +421,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    gap: calc(0.7 * var(--gap));
+    gap: calc(0.8 * var(--gap));
 }
 .job-details section h4{
     color: #3C3A36;
@@ -706,6 +706,8 @@ body{
     left: 0;
     z-index: 2;
     background: #EFF2F6;
+    overflow: hidden;
+    padding: var(--padlarger) 0;
 }
 .single{
     position: relative;
@@ -714,13 +716,18 @@ body{
 .singledetails{
     gap: var(--fontxsmall);
     width: 67%;
-    height: 100%;
-    margin: var(--padlarge) auto;
+    margin: auto;
     justify-content: initial;
+    display: flex;
+    flex-direction: column;
+    padding-right: var(--padmedium);
+}
+.singledetails .job-details{
+    align-items: flex-end;
+    gap: 1.7vw;
 }
 .singledetails .job-details img{
-    min-width: 18%;
-    /* width: 17.5vh; */
+    min-width: 22%;
 }
 .singledetails .job-details section{
     flex: 1;
@@ -761,7 +768,7 @@ body{
 }
 .back{
     position: absolute;
-    top: 2vw;
+    top: 1vw;
     left: 2vw;
     color: #7C3EFF;
     font-size: var(--fontmedium);
@@ -823,7 +830,7 @@ body{
     background: #FFF;
 }
 .rating-completion .ratings img{
-    width: 30%;
+    width: 33%;
     aspect-ratio: 1/1;
     margin: var(--padmedium) auto;
 }
@@ -953,7 +960,7 @@ body{
 }
 .donut-chart .pie{
     position: relative;
-    width: 40%;
+    width: 43%;
     aspect-ratio: 1/1;
     margin: var(--padmedium) auto; 
     border-radius: 50%;
@@ -1015,12 +1022,9 @@ body{
     .jobs-cont .alljobs{
         max-height: 60vh;
     }
-    .singledetails{
-        gap: var(--fontxsmall);
-        width: 67%;
-        overflow-y: scroll;
-        margin: var(--padlittle) auto;
-        height: 95%;
-        padding: 0 var(--padlittle) 0 0;
+}
+@media screen and (min-width: 1920px) {
+    ::-webkit-scrollbar {
+        width: 4.5px;
     }
 }
