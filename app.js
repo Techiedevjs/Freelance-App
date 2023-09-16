@@ -114,7 +114,7 @@ let jobs = [
         pay: 650,
         favorite: false,
         popular: true,
-        current:true,
+        // current:true,
         type: "remote",
         skill: "css"
     },
@@ -319,6 +319,14 @@ const checkIsCurrent = (jobid) => {
     }
 }
 // checkIsCurrent(jobs);
+const checkScroll = () => {
+    let details = document.querySelector('.singledetails');
+    let view = document.querySelector('.single');
+    if(details.scrollHeight >= view.clientHeight){
+        details.style.overflowY = "scroll";
+        details.style.height = '62vh';
+    }
+}
 const viewJob = ( jobid, name) => {
     let job = jobs.filter(j => j.jobid === jobid);
     if(job.length){
@@ -410,6 +418,7 @@ const viewJob = ( jobid, name) => {
         </div>
         `
         document.querySelectorAll('.pie').forEach(elem => elem.style.background = `conic-gradient(black 0.00%, #6440B3 0.00% ${incomplete}%, #EE82FF ${incomplete}% ${incomplete + late}%, #A276FF ${incomplete + late}% ${ontime}% )`)
+        checkScroll()
     }
     loadJobProfileData();
    }
@@ -468,7 +477,6 @@ const queryValues = () => {
       filteredJobs = filteredJobs.filter(job => skill.includes(job.skill));
     }
     pushAllJobs(filteredJobs);
-    console.log(searchQuery);
 };
 document.querySelector('#searchjobs').addEventListener('input', (e) => {
     searchQuery.searchvalue = e.target.value.toLowerCase();
