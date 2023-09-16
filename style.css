@@ -3,7 +3,7 @@
     src: url(./SFProText.ttf);
 }
 ::-webkit-scrollbar {
-    width: 2px;
+    width: 3px;
 }
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
@@ -36,6 +36,9 @@ button{
 }
 .fxs{
     font-size: var(--fontxsmall);
+}
+.fxxs{
+    font-size: calc(0.9 * var(--fontsmall));
 }
 .fs{
     font-size: var(--fontsmall);
@@ -186,6 +189,13 @@ body{
     padding: var(--padlittle) var(--padlarger);
     display: flex;
     justify-content: space-between;
+    position: relative;
+}
+.absnav{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .container nav div:first-child{
     font-weight: 900;
@@ -290,6 +300,7 @@ body{
     top: 0;
     right: 0;
     width: 21vw;
+    z-index: 10;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .container main .profile-section .relative{
@@ -410,7 +421,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    gap: calc(0.5 * var(--gap));
+    gap: calc(0.7 * var(--gap));
 }
 .job-details section h4{
     color: #3C3A36;
@@ -467,7 +478,6 @@ body{
     height: 100%;
 }
 .last button{
-    width: 0;
     border: none;
     border-radius: calc(1.5 * var(--radius));
     background: #A276FF;
@@ -478,15 +488,16 @@ body{
     color: transparent;
     cursor: pointer;
     opacity: 0;
-    /* display: none; */
 }
 .last button:hover{
     background: #7C3EFF;
 }
+.block{
+    cursor: not-allowed !important;
+}
 .job:hover button{
-    width: 7vw;
-    padding: var(--padlittle);
-    /* display: block; */
+    width: 100%;
+    padding: var(--padlittle) var(--padmedium);
     color: white;
     opacity: 1;
 }
@@ -557,10 +568,10 @@ body{
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
-    gap: calc(0.7 * var(--gap));
+    gap: 1.93vh;
     height: max-content;
     background-color: white;
-    padding: var(--padlarger);
+    padding: 1.3vw;
 }
 .jobfilter h4{
     color: #3C3A36;
@@ -569,6 +580,7 @@ body{
     font-weight: 700;
     line-height: 104.5%;
     letter-spacing: 0.5px;
+    margin-bottom: 4px;
 }
 .jobfilter h5{
     color: #434343;
@@ -605,7 +617,7 @@ body{
 .types, .skills{
     display: flex;
     flex-direction: column;
-    gap: calc(0.3 * var(--gap));
+    gap: calc(0.5 * var(--gap));
 }
 .jobfilter .checkboxes{
     width: max-content;
@@ -686,15 +698,24 @@ body{
     font-weight: 700;
     display: none;
 }
+.view-current{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: 2;
+    background: #EFF2F6;
+}
 .single{
     position: relative;
     height: 100%;
 }
 .singledetails{
-    gap: var(--gap);
+    gap: var(--fontxsmall);
     width: 67%;
     height: 100%;
-    padding: var(--padlarge) 0;
+    margin: var(--padlarge) auto;
     justify-content: initial;
 }
 .singledetails .job-details img{
@@ -706,13 +727,16 @@ body{
     justify-content: space-between;
     gap: var(--gap);
 }
+.singledetails .job-details section h4{
+    font-size: 1.25vw;
+}
 .singledetails .continue-favorite{
     display: flex;
     justify-content: space-between;
 }
 .singledetails .continue-favorite button{
     border-radius:calc(2 *  var(--radius));
-    padding: var(--padlittle) var(--padlarger);
+    padding:  0.625vw var(--padlarger);
     background: #A276FF;
     color: white;
     font-family: 'Inter';
@@ -756,10 +780,10 @@ body{
 .earnings-info{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: var(--gap);
+    gap: var(--fontxsmall);
 }
 .earnings-info div{
-    padding: var(--padmedium);
+    padding: 0.9vw;
     border-radius: var(--radius);
     background: rgba(180, 144, 255, 0.25);
     text-align: center;
@@ -790,7 +814,7 @@ body{
     gap: var(--gap);
 }
 .rating-completion div{
-    padding: var(--padmedium);
+    padding:1.2vw 1vw;
     display: flex;
     text-align: center;
     gap: calc(0.5 * var(--gap));
@@ -799,9 +823,9 @@ body{
     background: #FFF;
 }
 .rating-completion .ratings img{
-    width: 27%;
+    width: 30%;
     aspect-ratio: 1/1;
-    margin: auto;
+    margin: var(--padmedium) auto;
 }
 .rating-completion .ratings p{
     color: #3D235B;
@@ -818,6 +842,7 @@ body{
     padding: var(--padmedium);
     border-radius: var(--radius);
     background: white;
+    z-index: 15;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .added-to-favorites h4{
@@ -851,6 +876,7 @@ body{
     height: 100%;
     display: flex;
     justify-content: center;
+    z-index: 20;
     align-items: center;
     background-color: rgba(30, 23, 35, 0.9);
 }
@@ -926,17 +952,18 @@ body{
     position: relative;
 }
 .donut-chart .pie{
-    width: 35%;
+    position: relative;
+    width: 40%;
     aspect-ratio: 1/1;
-    margin: auto; 
+    margin: var(--padmedium) auto; 
     border-radius: 50%;
 }
-.donut-chart section{
+.donut-chart .pie section{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 60%;
+    height: 75%;
     aspect-ratio: 1/1;
     background-color: white;
     border-radius: 50%;
@@ -956,6 +983,7 @@ body{
 }
 .incomplete{
     right: 0;
+    top: 0;
 }
 .ontime, .late{
     bottom: 0;
@@ -986,5 +1014,13 @@ body{
     }
     .jobs-cont .alljobs{
         max-height: 60vh;
+    }
+    .singledetails{
+        gap: var(--fontxsmall);
+        width: 67%;
+        overflow-y: scroll;
+        margin: var(--padlittle) auto;
+        height: 95%;
+        padding: 0 var(--padlittle) 0 0;
     }
 }
