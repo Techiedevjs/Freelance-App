@@ -32,7 +32,7 @@
                     </svg>
                     <span>WERK</span>
                 </div>
-                <div class="flexsmall">
+                <div class="flexsmall absnav">
                     <p class="fs bold inter home-tab pressed">HOME</p>
                     <p class="fs bold inter jobs-tab">JOBS</p>
                     <p class="fs bold inter favorites-tab">FAVORITES</p>
@@ -44,9 +44,9 @@
                     <div class="flexlittle">
                         <img src="images/profile.svg" alt="profile" class="profile-image">
                     </div>
-                    <section class="fs">
-                        <p class="profile-name">John Oils</p>
-                        <p class="fxs">Wallet: $<span class="wallet-balance">7500</span></p>
+                    <section class="fxs">
+                        <p class="profile-name fxs">John Oils</p>
+                        <p class="fxxs">Wallet: $<span class="wallet-balance">7500</span></p>
                     </section>
                 </div>
             </nav>
@@ -76,9 +76,6 @@
                             <h2 class="center header"> POPULAR JOBS </h2>
                             <section class="popular-jobs"></section>
                         </section>
-                        <section class="popular-single hide-element single">
-    
-                        </section>
                     </div>
                 </div>
                 
@@ -107,37 +104,21 @@
                                 <div>
                                     <h5>TYPE</h5>
                                     <div class="types">
-                                        <div class="flexlittle fxs pointer checkboxes local" id="" onclick="filterByOption('local','type')">
+                                        <div class="flexlittle fxs pointer checkboxes remote" id="" onclick="filterByOption('remote','type')">
                                             <span class="checkbox">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="hidden localcheck" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="hidden remotecheck" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                                 <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
                                             </svg>
                                             </span>
-                                            <p>Local Jobs</p>
+                                            <p>Remote Jobs</p>
                                         </div>
-                                        <div class="flexlittle fxs pointer checkboxes featured" id="" onclick="filterByOption('featured', 'type')">
+                                        <div class="flexlittle fxs pointer checkboxes onsite" id="" onclick="filterByOption('onsite', 'type')">
                                             <span class="checkbox">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="hidden featuredcheck" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="hidden onsitecheck" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                                 <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
                                             </svg>
                                             </span>
-                                            <p>Featured Jobs</p>
-                                        </div>
-                                        <div class="flexlittle fxs pointer checkboxes recruiter" id="" onclick="filterByOption('recruiter', 'type')">
-                                            <span class="checkbox">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="hidden recruitercheck" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                            </svg>
-                                            </span>
-                                            <p>Recruiter Jobs</p>
-                                        </div>
-                                        <div class="flexlittle fxs pointer checkboxes fulltime" id="" onclick="filterByOption('fulltime', 'type')">
-                                            <span class="checkbox">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="hidden fulltimecheck" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M6.63636 12L3 8.19048L4.27273 6.85714L6.63636 9.33333L11.7273 4L13 5.33333L6.63636 12Z" fill="black"></path>
-                                            </svg>
-                                            </span>
-                                            <p>Full Time Jobs</p>
+                                            <p>Onsite Jobs</p>
                                         </div>
                                     </div>
                                 </div>
@@ -183,16 +164,12 @@
                             <div class="alljobs"></div>
                         </section>
                     </section>
-                    <section class="jobs-single single hide-element">
-    
-                    </section>
                 </div>
                 <div class="favorites hide-element">
                     <div class="favorites-cont ">
                         <h2 class="center header"> FAVORITE JOBS </h2>
                         <section class="favorite-jobs"></section>
                     </div>
-                    <div class="single hide-element favorites-single"></div>
                 </div>
                 <!-- PROFILE SECTION -->
                 <section class="profile-section hideprofile">
@@ -229,6 +206,12 @@
                             <p class="company-position cap"></p>
                         </div>
                     </article>
+                </section>
+                <!-- VIEW CURRENT -->
+                <section class="view-current hide-element">
+                    <section class="single">
+                        
+                    </section>
                 </section>
             </main>
             <!-- TASK COMPLETED -->
